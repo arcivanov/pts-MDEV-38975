@@ -93,7 +93,7 @@ for test in "${TESTS[@]}"; do
         echo ""
         echo "--- Running: $test / $threads threads ($IDENTIFIER) ---"
         export PRESET_OPTIONS="mariadb-blob.test=$test;mariadb-blob.threads=$threads"
-        phoronix-test-suite batch-run local/mariadb-blob
+        phoronix-test-suite batch-run local/mariadb-blob-1.2.0
     done
 done
 

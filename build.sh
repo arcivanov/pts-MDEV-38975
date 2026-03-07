@@ -89,7 +89,14 @@ git submodule update --init --recursive
 # ---- Build via PTS force-install ----
 echo "--- Building MariaDB from $BRANCH (PTS install) ---"
 export MARIADB_SRC_DIR="$REPO_PATH"
-phoronix-test-suite force-install local/mariadb-blob
+phoronix-test-suite force-install local/mariadb-blob-1.2.0
+
+# Verify install actually succeeded (PTS may return 0 on failure)
+if [ ! -x "$HOME/mariadb-blob" ] || [ ! -d "$HOME/mariadb_/bin" ]; then
+    echo "ERROR: PTS install did not produce expected artifacts."
+    echo "Check PTS output above for errors."
+    exit 1
+fi
 
 echo ""
 echo "=== Build complete for branch: $BRANCH ==="
