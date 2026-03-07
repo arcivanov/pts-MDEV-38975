@@ -70,13 +70,12 @@ echo ""
 # ---- Configure PTS batch mode (suppress prompts) ----
 phoronix-test-suite batch-setup <<'BATCHEOF' 2>/dev/null
 y
-y
-y
-y
-y
-y
-y
 n
+n
+y
+y
+y
+y
 BATCHEOF
 
 # ---- Run each test+thread combination ----
