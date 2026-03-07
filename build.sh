@@ -6,11 +6,13 @@
 # and runs the PTS install (which builds MariaDB from source).
 #
 # Usage:
-#   ./build.sh <git-repo-source> <branch>
+#   ./build.sh <git-repo-source> <branch|commit|PR:N>
 #
 # Examples:
 #   ./build.sh ~/mariadb-server 10.11
 #   ./build.sh ~/mariadb-server MDEV-38975
+#   ./build.sh ~/mariadb-server 14f96a2e080
+#   ./build.sh ~/mariadb-server PR:3802
 #
 # Prerequisites:
 #   - phoronix-test-suite installed
@@ -59,10 +61,15 @@ if [ ! -d "$REPO_PATH/.git" ]; then
     exit 1
 fi
 
-# Verify branch/ref exists, fetch if needed
+# Resolve branch/ref, fetch if needed
 cd "$REPO_PATH"
-if ! git rev-parse --verify "$BRANCH" &>/dev/null && \
-   ! git rev-parse --verify "origin/$BRANCH" &>/dev/null; then
+if [[ "$BRANCH" =~ ^PR:([0-9]+)$ ]]; then
+    PR_NUM="${BASH_REMATCH[1]}"
+    echo "--- Fetching PR #$PR_NUM from origin ---"
+    git fetch origin "pull/$PR_NUM/head:pr-$PR_NUM"
+    BRANCH="pr-$PR_NUM"
+elif ! git rev-parse --verify "$BRANCH" &>/dev/null && \
+     ! git rev-parse --verify "origin/$BRANCH" &>/dev/null; then
     echo "--- Fetching $BRANCH from origin ---"
     if ! git fetch origin "$BRANCH"; then
         echo "ERROR: Branch '$BRANCH' not found locally or on origin in $REPO_PATH"
