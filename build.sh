@@ -128,8 +128,23 @@ if [ ! -x "$PTS_INSTALL_DIR/mariadb-blob" ] || [ ! -d "$PTS_INSTALL_DIR/mariadb_
     exit 1
 fi
 
+# ---- Stash build to repository ----
+BUILD_REPO="$HOME/.mariadb-blob-builds"
+BUILD_SLOT="$BUILD_REPO/$ORIG_BRANCH"
+echo "--- Saving build to $BUILD_SLOT ---"
+mkdir -p "$BUILD_REPO"
+rm -rf "$BUILD_SLOT"
+mv "$PTS_INSTALL_DIR" "$BUILD_SLOT"
+# Restore PTS install dir as symlink to active build
+ln -sfn "$BUILD_SLOT" "$PTS_INSTALL_DIR"
+# Save metadata alongside the build
+cp "$METADATA_FILE" "$BUILD_SLOT/.build-meta"
+
 echo ""
 echo "=== Build complete for branch: $BRANCH ==="
 echo ""
+echo "Saved builds:"
+ls -1 "$BUILD_REPO"
+echo ""
 echo "Run benchmarks with:"
-echo "  ./run-benchmark.sh $BRANCH [result-name]"
+echo "  ./run-benchmark.sh $ORIG_BRANCH [result-name]"

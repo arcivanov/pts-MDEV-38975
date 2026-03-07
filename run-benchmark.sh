@@ -57,6 +57,24 @@ if [ ! -d "$PTS_LOCAL_DIR/mariadb-blob-1.2.0" ]; then
     exit 1
 fi
 
+# ---- Activate the right build ----
+BUILD_REPO="$HOME/.mariadb-blob-builds"
+PTS_INSTALL_DIR="$HOME/.phoronix-test-suite/installed-tests/local/mariadb-blob-1.2.0"
+BUILD_SLOT="$BUILD_REPO/$IDENTIFIER"
+if [ -d "$BUILD_SLOT" ]; then
+    echo "Activating build: $IDENTIFIER"
+    rm -rf "$PTS_INSTALL_DIR"
+    ln -sfn "$BUILD_SLOT" "$PTS_INSTALL_DIR"
+    # Restore metadata
+    if [ -f "$BUILD_SLOT/.build-meta" ]; then
+        cp "$BUILD_SLOT/.build-meta" "$HOME/.mariadb-blob-build-meta"
+    fi
+elif [ ! -d "$PTS_INSTALL_DIR" ]; then
+    echo "ERROR: No build found for '$IDENTIFIER'. Available builds:"
+    ls -1 "$BUILD_REPO" 2>/dev/null || echo "  (none)"
+    exit 1
+fi
+
 echo "=== MariaDB MDEV-38975 Benchmark — Run ==="
 echo ""
 echo "Identifier:  $IDENTIFIER"
