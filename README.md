@@ -31,11 +31,33 @@ benchmark measures the impact on:
 
 On the target machine:
 
-- **Phoronix Test Suite** — https://github.com/phoronix-test-suite/phoronix-test-suite
-- **sysbench** — `dnf install sysbench` (Fedora/RHEL) or `apt install sysbench` (Debian/Ubuntu)
-- **MariaDB build dependencies** — cmake, gcc/g++, bison, flex, libncurses-dev,
-  libssl-dev, zlib1g-dev, libevent-dev
-- **MariaDB git repository** cloned locally with both branches available
+- **MariaDB git repository** cloned locally with both branches/commits available
+- **Phoronix Test Suite**, **sysbench**, and **MariaDB build dependencies**
+
+### Fedora / RHEL
+
+```bash
+sudo dnf install phoronix-test-suite sysbench \
+    cmake gcc gcc-c++ make bison flex \
+    ncurses-devel openssl-devel zlib-devel libevent-devel \
+    libxml2-devel pcre2-devel systemd-devel \
+    libaio-devel libcurl-devel snappy-devel lz4-devel \
+    checkpolicy git
+```
+
+### Debian / Ubuntu
+
+```bash
+sudo apt-get install phoronix-test-suite sysbench \
+    cmake gcc g++ make bison flex \
+    libncurses-dev libssl-dev zlib1g-dev libevent-dev \
+    libxml2-dev libpcre2-dev libsystemd-dev \
+    libaio-dev libcurl4-openssl-dev libsnappy-dev liblz4-dev \
+    checkpolicy git
+```
+
+> **Note:** If `phoronix-test-suite` is not available in your distro's repos,
+> install from source: https://github.com/phoronix-test-suite/phoronix-test-suite
 
 ## Usage
 
