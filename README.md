@@ -20,7 +20,8 @@ benchmark measures the impact on:
 - **INFORMATION_SCHEMA** — I_S tables contain TEXT columns; queries on them
   create temp tables that previously required Aria
 - **GEOMETRY** — `DISTINCT` on geometry columns
-- **BLOB size cases** — exercises the three HEAP continuation chain layouts:
+- **BLOB size cases** — exercises the three HEAP BLOB continuation chain layouts
+  introduced by MDEV-38975 (see [`storage/heap/hp_blob.c`](https://github.com/MariaDB/server/blob/MDEV-38975/storage/heap/hp_blob.c)):
   - Case A (1–5 bytes): single-record inline, zero-copy
   - Case B (1–10KB): single-run contiguous, zero-copy
   - Case C (20–50KB): multi-run, reassembly
@@ -166,6 +167,10 @@ FORCE_TIMES_TO_RUN=2 \
 | `geom_distinct` | `DISTINCT` on `ST_AsText(geom)` + TEXT |
 
 ### BLOB size case tests
+
+These tests exercise the three HEAP BLOB continuation chain layouts introduced
+by MDEV-38975. See [`storage/heap/hp_blob.c`](https://github.com/MariaDB/server/blob/MDEV-38975/storage/heap/hp_blob.c)
+for the implementation.
 
 | Test | Blob size | HEAP layout |
 |------|-----------|-------------|
