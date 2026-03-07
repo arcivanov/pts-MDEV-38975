@@ -64,18 +64,25 @@ sudo apt-get install phoronix-test-suite sysbench \
 ### 1. Build
 
 ```bash
-./build.sh <git-repo-source> <branch>
+./build.sh <git-repo-source> <branch|commit|PR:N>
 ```
 
-Checks out the branch, deploys the PTS test profile, and compiles MariaDB from
-source with `-march=native` optimizations. Also initializes the database and
-prepares all benchmark data (sysbench tables, BLOB/TEXT tables, geometry tables,
-schema objects for I_S tests).
+Checks out the branch, commit, or GitHub PR, deploys the PTS test profile, and
+compiles MariaDB from source with `-march=native` optimizations. Also initializes
+the database and prepares all benchmark data (sysbench tables, BLOB/TEXT tables,
+geometry tables, schema objects for I_S tests).
+
+Builds are stashed in `~/.mariadb-blob-builds/<identifier>/` so multiple builds
+can coexist. The run script activates the right build by identifier.
 
 ```bash
-./build.sh ~/mariadb-server 10.11
-./build.sh ~/mariadb-server MDEV-38975
+./build.sh ~/mariadb-server 10.11           # branch name
+./build.sh ~/mariadb-server 14f96a2e080     # commit SHA
+./build.sh ~/mariadb-server PR:4735         # GitHub PR (fetched from origin)
 ```
+
+If the branch or PR is not available locally, `build.sh` fetches it from origin
+automatically.
 
 ### 2. Run
 
@@ -83,21 +90,31 @@ schema objects for I_S tests).
 ./run-benchmark.sh <identifier> [result-name]
 ```
 
-Runs the benchmark suite against the currently installed build. The identifier
-labels this run in the result file (e.g. `10.11`, `MDEV-38975`). The optional
-result-name defaults to `mdev38975-comparison`.
+Activates the build matching `<identifier>` and runs the benchmark suite against
+it. The identifier labels this run in the result file and must match what was
+passed to `build.sh`. The optional result-name defaults to `mdev38975-comparison`.
+
+Multiple builds can be run without rebuilding:
 
 ```bash
-# Run baseline (after building 10.11)
-./build.sh ~/mariadb-server 10.11
-./run-benchmark.sh 10.11
+# Build both versions upfront
+./build.sh ~/mariadb-server 14f96a2e080
+./build.sh ~/mariadb-server PR:4735
 
-# Rebuild and run feature branch
-./build.sh ~/mariadb-server MDEV-38975
-./run-benchmark.sh MDEV-38975
+# Run in any order — no rebuild needed
+BENCH_THREADS="1,44,88,176" ./run-benchmark.sh 14f96a2e080
+BENCH_THREADS="1,44,88,176" ./run-benchmark.sh PR:4735
 ```
 
-### 3. View results
+### 3. Stop
+
+```bash
+./kill-benchmark.sh
+```
+
+Force-stops a running benchmark (PTS, sysbench workers, and MariaDB server).
+
+### 4. View results
 
 Both runs are stored in the same PTS result file. PTS generates side-by-side
 comparisons automatically:
@@ -263,7 +280,8 @@ MariaDB 10.11 source code (`sql/sql_select.cc`, `sql/sql_union.cc`,
 
 ```
 ├── build.sh                 # Build: git checkout + cmake + PTS install
-├── run-benchmark.sh         # Run: execute tests against current build
+├── run-benchmark.sh         # Run: execute tests against active build
+├── kill-benchmark.sh        # Force-stop a running benchmark
 ├── README.md
 └── mariadb-blob-1.2.0/      # PTS local test profile
     ├── test-definition.xml   # Test metadata and menu options
@@ -272,3 +290,12 @@ MariaDB 10.11 source code (`sql/sql_select.cc`, `sql/sql_union.cc`,
     ├── post.sh               # Stop server after each run
     └── results-definition.xml# Result parser (sysbench-compatible format)
 ```
+
+### Runtime directories
+
+| Path | Description |
+|------|-------------|
+| `~/.mariadb-blob-builds/<id>/` | Build repository — one directory per build |
+| `~/.phoronix-test-suite/installed-tests/local/mariadb-blob-1.2.0/` | Symlink to active build |
+| `~/.phoronix-test-suite/test-results/` | PTS result files |
+| `~/.mariadb-blob-build-meta` | Metadata for auto-generated test description |
