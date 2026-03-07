@@ -59,12 +59,15 @@ if [ ! -d "$REPO_PATH/.git" ]; then
     exit 1
 fi
 
-# Verify branch exists
+# Verify branch/ref exists, fetch if needed
 cd "$REPO_PATH"
 if ! git rev-parse --verify "$BRANCH" &>/dev/null && \
    ! git rev-parse --verify "origin/$BRANCH" &>/dev/null; then
-    echo "ERROR: Branch '$BRANCH' not found in $REPO_PATH"
-    exit 1
+    echo "--- Fetching $BRANCH from origin ---"
+    if ! git fetch origin "$BRANCH"; then
+        echo "ERROR: Branch '$BRANCH' not found locally or on origin in $REPO_PATH"
+        exit 1
+    fi
 fi
 
 # ---- Deploy PTS test profile ----
