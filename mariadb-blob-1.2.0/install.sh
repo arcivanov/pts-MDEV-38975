@@ -79,7 +79,7 @@ RAM8P="$(($SYS_MEMORY * 75 / 100))"
 # 3. Start server for data preparation
 # ---------------------------------------------------------------------------
 if [ "$(whoami)" = "root" ]; then
-    ./bin/mariadbd-safe --no-defaults \
+    setsid ./bin/mariadbd --no-defaults \
         --innodb-log-file-size=1G \
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
@@ -89,7 +89,7 @@ if [ "$(whoami)" = "root" ]; then
         --user=root \
         --datadir="$HOME/mariadb_/.data" &
 else
-    ./bin/mariadbd-safe --no-defaults \
+    setsid ./bin/mariadbd --no-defaults \
         --innodb-log-file-size=1G \
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
@@ -102,7 +102,6 @@ sleep 5
 
 MYSQL="./bin/mariadb"
 MYSQLADMIN="./bin/mariadb-admin"
-MYSQLDUMP="./bin/mariadb-dump"
 MYSQL_OPTS="-u $DB_USER -pphoronix --comments"
 SOCKET="/tmp/mysql.sock"
 
@@ -366,14 +365,15 @@ FROM seq_1_to_10000;
 BLOBSQL
 
 # ---------------------------------------------------------------------------
-# 6. Dump database and shut down
+# 6. Shut down and snapshot datadir for fast restore
 # ---------------------------------------------------------------------------
-$MYSQLDUMP -h localhost -u "$DB_USER" -pphoronix --comments sbtest > ~/mysql-dumped
-echo $? > ~/install-exit-status
-echo "DROP DATABASE sbtest;" | $MYSQL -h localhost $MYSQL_OPTS
-
 $MYSQLADMIN -u "$DB_USER" -pphoronix shutdown
 sleep 3
+
+echo "--- Snapshotting datadir for fast restore ---"
+rm -rf "$HOME/mariadb_/.data-snapshot"
+cp -a "$HOME/mariadb_/.data" "$HOME/mariadb_/.data-snapshot"
+echo $? > ~/install-exit-status
 
 # ---------------------------------------------------------------------------
 # 7. Generate run script: mariadb-blob
@@ -397,11 +397,7 @@ MYSQL="$HOME/mariadb_/bin/mariadb"
 MYSQL_OPTS="-u $DB_USER -pphoronix --socket=$SOCKET -B -N"
 DURATION=${BENCH_DURATION:-120}
 
-# ---- Restore database from dump ----
-echo "DROP DATABASE IF EXISTS sbtest;" | $MYSQL $MYSQL_OPTS
-echo "CREATE DATABASE sbtest;" | $MYSQL $MYSQL_OPTS
-$MYSQL $MYSQL_OPTS sbtest < ~/mysql-dumped
-sleep 3
+# Database is restored via datadir snapshot copy in pre.sh
 
 # ---- Sysbench OLTP tests ----
 if echo "$TEST" | grep -q "^oltp_"; then
@@ -417,7 +413,6 @@ if echo "$TEST" | grep -q "^oltp_"; then
         --mysql-socket="$SOCKET" \
         run --tables=16 --table-size=1000000 > $LOG_FILE 2>&1
     echo $? > ~/test-exit-status
-    echo "DROP DATABASE sbtest;" | $MYSQL $MYSQL_OPTS
     exit 0
 fi
 
@@ -550,7 +545,6 @@ SQL statistics:
 RESULTEOF
 
 echo $? > ~/test-exit-status
-echo "DROP DATABASE sbtest;" | $MYSQL $MYSQL_OPTS
 
 RUNSCRIPT_BODY
 
