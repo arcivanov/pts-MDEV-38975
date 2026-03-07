@@ -1,0 +1,247 @@
+# MariaDB MDEV-38975 Benchmark Suite
+
+A/B performance comparison of [MDEV-38975](https://jira.mariadb.org/browse/MDEV-38975)
+(HEAP engine BLOB/TEXT/JSON/GEOMETRY column support) against the 10.11 baseline,
+using the [Phoronix Test Suite](https://github.com/phoronix-test-suite/phoronix-test-suite).
+
+Based on the [pts/mariadb](https://openbenchmarking.org/test/pts/mariadb) test profile
+(latest upstream: 1.2.0), extended with custom BLOB/TEXT temp table,
+INFORMATION_SCHEMA, GEOMETRY, and BLOB size case benchmarks.
+
+## What it measures
+
+MDEV-38975 allows internal temporary tables with BLOB/TEXT columns to stay in
+the HEAP engine (in-memory) instead of falling back to Aria (disk-backed). This
+benchmark measures the impact on:
+
+- **Stock sysbench OLTP** — regression check on standard InnoDB workloads
+- **BLOB/TEXT temp tables** — `GROUP BY`, `DISTINCT`, `UNION`, subqueries on
+  TEXT columns that force internal temp table creation
+- **INFORMATION_SCHEMA** — I_S tables contain TEXT columns; queries on them
+  create temp tables that previously required Aria
+- **GEOMETRY** — `DISTINCT` on geometry columns
+- **BLOB size cases** — exercises the three HEAP continuation chain layouts:
+  - Case A (1–5 bytes): single-record inline, zero-copy
+  - Case B (1–10KB): single-run contiguous, zero-copy
+  - Case C (20–50KB): multi-run, reassembly
+  - Mixed: weighted combination of all three
+
+## Prerequisites
+
+On the target machine:
+
+- **Phoronix Test Suite** — https://github.com/phoronix-test-suite/phoronix-test-suite
+- **sysbench** — `dnf install sysbench` (Fedora/RHEL) or `apt install sysbench` (Debian/Ubuntu)
+- **MariaDB build dependencies** — cmake, gcc/g++, bison, flex, libncurses-dev,
+  libssl-dev, zlib1g-dev, libevent-dev
+- **MariaDB git repository** cloned locally with both branches available
+
+## Usage
+
+### 1. Build
+
+```bash
+./build.sh <git-repo-source> <branch>
+```
+
+Checks out the branch, deploys the PTS test profile, and compiles MariaDB from
+source with `-march=native` optimizations. Also initializes the database and
+prepares all benchmark data (sysbench tables, BLOB/TEXT tables, geometry tables,
+schema objects for I_S tests).
+
+```bash
+./build.sh ~/mariadb-server 10.11
+./build.sh ~/mariadb-server MDEV-38975
+```
+
+### 2. Run
+
+```bash
+./run-benchmark.sh <identifier> [result-name]
+```
+
+Runs the benchmark suite against the currently installed build. The identifier
+labels this run in the result file (e.g. `10.11`, `MDEV-38975`). The optional
+result-name defaults to `mdev38975-comparison`.
+
+```bash
+# Run baseline (after building 10.11)
+./build.sh ~/mariadb-server 10.11
+./run-benchmark.sh 10.11
+
+# Rebuild and run feature branch
+./build.sh ~/mariadb-server MDEV-38975
+./run-benchmark.sh MDEV-38975
+```
+
+### 3. View results
+
+Both runs are stored in the same PTS result file. PTS generates side-by-side
+comparisons automatically:
+
+```bash
+# Text summary in terminal
+phoronix-test-suite result-file-to-text mdev38975-comparison
+
+# PDF with bar charts
+phoronix-test-suite result-file-to-pdf mdev38975-comparison
+
+# HTML (opens in browser)
+phoronix-test-suite result-file-to-html mdev38975-comparison
+
+# Interactive browser UI
+phoronix-test-suite gui mdev38975-comparison
+
+# Upload to OpenBenchmarking.org (shareable link)
+phoronix-test-suite upload-result mdev38975-comparison
+```
+
+## Configuration
+
+Environment variables control what gets run:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `BENCH_TESTS` | all 24 tests | Comma-separated test names |
+| `BENCH_THREADS` | `1,16,64` | Comma-separated thread counts |
+| `BENCH_DURATION` | `120` | Seconds per test run |
+| `FORCE_TIMES_TO_RUN` | `3` | Runs per configuration (for statistical stability) |
+
+Example — quick run with fewer tests:
+
+```bash
+BENCH_TESTS="oltp_read_write,blob_case_b,is_columns" \
+BENCH_THREADS="1,64" \
+BENCH_DURATION=60 \
+FORCE_TIMES_TO_RUN=2 \
+./run-benchmark.sh MDEV-38975
+```
+
+## Available tests
+
+### Stock sysbench OLTP (regression check)
+
+| Test | Description |
+|------|-------------|
+| `oltp_read_write` | Mixed read/write transactions |
+| `oltp_read_only` | Read-only transactions |
+| `oltp_write_only` | Write-only transactions |
+| `oltp_point_select` | Primary key lookups |
+| `oltp_update_non_index` | Updates on non-indexed columns |
+| `oltp_update_index` | Updates on indexed columns |
+
+### BLOB/TEXT temp table tests
+
+| Test | Description |
+|------|-------------|
+| `blob_group_by` | `GROUP BY` on TEXT column (50K rows) |
+| `blob_distinct` | `DISTINCT` on TEXT column (50K rows) |
+| `blob_union` | `UNION` deduplication on TEXT columns |
+| `blob_subquery` | Subquery materialization with TEXT |
+| `blob_count_distinct` | `COUNT(DISTINCT text_col)` — separate `Aggregator_distinct` path |
+| `blob_group_concat` | `GROUP_CONCAT(text_col)` — accumulates TEXT in temp table |
+| `blob_window_func` | `ROW_NUMBER() OVER (PARTITION BY k)` — window function temp table |
+| `blob_cte` | `WITH ... AS` — CTE materialization with TEXT |
+| `blob_recursive_cte` | `WITH RECURSIVE` — iterative temp table with TEXT |
+| `blob_orderby_groupby` | `GROUP BY text_col ORDER BY k` — two-phase temp table |
+| `blob_rollup` | `GROUP BY ... WITH ROLLUP` — rollup level temp tables |
+| `blob_insert_select` | `INSERT...SELECT` into temp table with TEXT |
+
+### INFORMATION_SCHEMA tests
+
+| Test | Description |
+|------|-------------|
+| `is_columns` | Full scan of `I_S.COLUMNS` with ordering |
+| `is_tables_join` | Join `I_S.COLUMNS` with `I_S.TABLES` |
+| `is_routines` | `I_S.ROUTINES` — 60 stored procs with large `ROUTINE_DEFINITION` (LONGTEXT) |
+| `is_views` | `I_S.VIEWS` — 30 views with complex `VIEW_DEFINITION` (LONGTEXT) |
+| `is_triggers` | `I_S.TRIGGERS` — 50 triggers with large `ACTION_STATEMENT` (LONGTEXT) |
+| `show_columns_loop` | `SHOW FULL COLUMNS` for every table — simulates ORM/admin tool startup |
+| `is_group_by_complex` | `GROUP BY` + `GROUP_CONCAT` + `HAVING` on I_S.COLUMNS — double temp table |
+
+### GEOMETRY test
+
+| Test | Description |
+|------|-------------|
+| `geom_distinct` | `DISTINCT` on `ST_AsText(geom)` + TEXT |
+
+### BLOB size case tests
+
+| Test | Blob size | HEAP layout |
+|------|-----------|-------------|
+| `blob_case_a` | 1–5 bytes | Single-record inline, zero-copy |
+| `blob_case_b` | 1–10KB | Single-run contiguous, zero-copy |
+| `blob_case_c` | 20–50KB | Multi-run, reassembly |
+| `blob_mixed` | All three (40/40/20%) | Mixed |
+
+## Internal temporary table coverage analysis
+
+MariaDB creates internal (implicit) temporary tables automatically to execute
+certain SQL operations. MDEV-38975 affects all paths where such a temp table
+contains BLOB/TEXT/JSON/GEOMETRY columns, because these previously forced Aria
+(disk-backed) instead of HEAP (in-memory).
+
+The following table lists every internal temp table creation path found in the
+MariaDB 10.11 source code (`sql/sql_select.cc`, `sql/sql_union.cc`,
+`sql/item_sum.cc`, `sql/opt_subselect.cc`, `sql/sql_derived.cc`,
+`sql/sql_cte.cc`, `sql/sql_window.cc`, `sql/sql_expression_cache.cc`,
+`sql/json_table.cc`, `sql/sql_update.cc`), along with coverage status.
+
+### Covered operations
+
+| # | Operation | Code path | Test(s) |
+|---|-----------|-----------|---------|
+| 1 | `GROUP BY` (no usable index) | `create_postjoin_aggr_table()` | `blob_group_by` |
+| 2 | `DISTINCT` (no usable index) | `create_postjoin_aggr_table()` | `blob_distinct`, `blob_case_a/b/c/mixed` |
+| 3 | `UNION` (deduplication) | `sql_union.cc` line 351 | `blob_union` |
+| 4 | `COUNT(DISTINCT col)` | `Aggregator_distinct::setup()` in `item_sum.cc` | `blob_count_distinct` |
+| 5 | `GROUP_CONCAT(col)` | `Item_func_group_concat::setup()` | `blob_group_concat` |
+| 6 | Window functions (`OVER`) | `Window_funcs_computation::setup()` in `sql_window.cc` | `blob_window_func` |
+| 7 | CTE (`WITH ... AS`) | `With_element::instantiate_tmp_tables()` in `sql_cte.cc` | `blob_cte` |
+| 8 | Recursive CTE (`WITH RECURSIVE`) | Iterative temp table in `sql_cte.cc` | `blob_recursive_cte` |
+| 9 | `ORDER BY` + `GROUP BY` (different columns) | Two-phase: aggr temp table + filesort | `blob_orderby_groupby` |
+| 10 | `GROUP BY ... WITH ROLLUP` | Extra rollup level temp tables | `blob_rollup` |
+| 11 | `INSERT...SELECT` (same table) | Materialization to separate read/write | `blob_insert_select` |
+| 12 | Subquery `IN` materialization | `opt_subselect.cc` line 4203 | `blob_subquery` |
+| 13 | Derived table materialization | `sql_derived.cc` line 1146 | Implicit via `COUNT(*) FROM (subquery) t` wrappers |
+| 14 | `INFORMATION_SCHEMA` queries | I_S tables have TEXT columns | `is_columns`, `is_tables_join` |
+| 15 | I_S.ROUTINES (LONGTEXT bodies) | `fill_schema_proc()` in `sql_show.cc` | `is_routines` |
+| 16 | I_S.VIEWS (LONGTEXT definitions) | `get_schema_views_record()` in `sql_show.cc` | `is_views` |
+| 17 | I_S.TRIGGERS (LONGTEXT statements) | `get_schema_triggers_record()` in `sql_show.cc` | `is_triggers` |
+| 18 | SHOW commands (I_S materialization) | `get_all_tables()` → `create_schema_table()` | `show_columns_loop` |
+| 19 | Complex GROUP BY on I_S (double temp) | I_S materialization + aggregation temp table | `is_group_by_complex` |
+| 20 | `GEOMETRY` operations | `Field_geom` → `MYSQL_TYPE_GEOMETRY` | `geom_distinct` |
+
+### Intentionally excluded
+
+| # | Operation | Reason |
+|---|-----------|--------|
+| 21 | Semi-join duplicate weedout | Rowid-only temp table, no BLOB columns involved |
+| 22 | Expression cache | Disabled for HEAP+blob by design (key format incompatibility) |
+| 23 | Multi-table `UPDATE`/`DELETE` | DML operations; not suitable for read-loop benchmarking |
+| 24 | `JSON_TABLE()` | Same `create_tmp_table()` path as derived tables (covered by #13) |
+| 25 | `VIEW` with `TEMPTABLE` algorithm | Same materialization path as derived tables (covered by #13) |
+| 26 | `HAVING` clause | Uses the GROUP BY temp table, not a separate allocation |
+| 27 | `UNION ALL` | No deduplication needed; does not create a temp table for uniqueness |
+| 28 | Cursor `FETCH INTO` | Stored procedure construct; same `create_tmp_table()` path |
+| 29 | `SELECT` handler / engine pushdown | Engine-specific (Spider); not applicable to standard workloads |
+| 30 | I_S privilege tables | No LONGTEXT columns (USER/SCHEMA/TABLE/COLUMN_PRIVILEGES) |
+| 31 | `SHOW DATABASES` / `SHOW STATUS` / `SHOW VARIABLES` | I_S.SCHEMATA/STATUS/VARIABLES have no LONGTEXT columns |
+| 32 | `SHOW PROCESSLIST` | INFO is LONGTEXT but result depends on concurrent queries; non-deterministic |
+| 33 | I_S.EVENTS | Would need event scheduler enabled; niche use case |
+| 34 | I_S.PARTITIONS | Partition expressions are typically short LONGTEXT; marginal benefit |
+| 35 | FK constraint checking | I_S query is a tiny fraction of the DML operation |
+
+## File structure
+
+```
+├── build.sh                 # Build: git checkout + cmake + PTS install
+├── run-benchmark.sh         # Run: execute tests against current build
+├── README.md
+└── mariadb-blob-1.2.0/      # PTS local test profile
+    ├── test-definition.xml   # Test metadata and menu options
+    ├── install.sh            # Build from source + data preparation
+    ├── pre.sh                # Start MariaDB server before each run
+    ├── post.sh               # Stop server after each run
+    └── results-definition.xml# Result parser (sysbench-compatible format)
+```
