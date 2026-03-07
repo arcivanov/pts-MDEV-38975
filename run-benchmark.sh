@@ -72,9 +72,9 @@ phoronix-test-suite batch-setup <<'BATCHEOF' 2>/dev/null
 y
 n
 n
-y
-y
-y
+n
+n
+n
 y
 BATCHEOF
 
