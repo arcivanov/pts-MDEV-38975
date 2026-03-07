@@ -86,6 +86,8 @@ echo "Runs/config: $FORCE_TIMES"
 echo ""
 
 # ---- Configure PTS batch mode (suppress prompts) ----
+# Save results: y, Browser: n, Upload: n, Prompt identifier: n,
+# Prompt description: n, Prompt result file: n, Run all options: n
 phoronix-test-suite batch-setup <<'BATCHEOF' 2>/dev/null
 y
 n
@@ -93,7 +95,7 @@ n
 n
 n
 n
-y
+n
 BATCHEOF
 
 # ---- Generate test description from build metadata ----
