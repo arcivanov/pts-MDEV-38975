@@ -78,6 +78,28 @@ y
 y
 BATCHEOF
 
+# ---- Generate test description from build metadata ----
+METADATA_FILE="$HOME/.mariadb-blob-build-meta"
+if [ -f "$METADATA_FILE" ]; then
+    source "$METADATA_FILE"
+    DESC="MariaDB"
+    if [ -n "$BUILD_PR_NUM" ]; then
+        DESC="$DESC PR #$BUILD_PR_NUM"
+    fi
+    if [ -n "$BUILD_GIT_BRANCH" ]; then
+        DESC="$DESC branch $BUILD_GIT_BRANCH"
+    elif [ -n "$BUILD_BRANCH" ]; then
+        DESC="$DESC $BUILD_BRANCH"
+    fi
+    DESC="$DESC commit $BUILD_COMMIT_SHORT"
+    if [ -n "$BUILD_COMMIT_SUBJECT" ]; then
+        DESC="$DESC — $BUILD_COMMIT_SUBJECT"
+    fi
+    export TEST_RESULTS_DESCRIPTION="$DESC"
+    echo "Description: $DESC"
+    echo ""
+fi
+
 # ---- Run each test+thread combination ----
 export TEST_RESULTS_NAME="$RESULT_NAME"
 export TEST_RESULTS_IDENTIFIER="$IDENTIFIER"

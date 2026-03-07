@@ -63,6 +63,8 @@ fi
 
 # Resolve branch/ref, fetch if needed
 cd "$REPO_PATH"
+ORIG_BRANCH="$BRANCH"
+PR_NUM=""
 if [[ "$BRANCH" =~ ^PR:([0-9]+)$ ]]; then
     PR_NUM="${BASH_REMATCH[1]}"
     echo "--- Fetching PR #$PR_NUM from origin ---"
@@ -95,6 +97,21 @@ echo "--- Checking out $BRANCH ---"
 cd "$REPO_PATH"
 git checkout "$BRANCH"
 git submodule update --init --recursive
+
+# ---- Save build metadata for run-benchmark.sh ----
+COMMIT_SHA=$(git rev-parse HEAD)
+COMMIT_SHORT=$(git rev-parse --short HEAD)
+COMMIT_SUBJECT=$(git log -1 --format=%s HEAD)
+GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
+METADATA_FILE="$HOME/.mariadb-blob-build-meta"
+cat > "$METADATA_FILE" <<METAEOF
+BUILD_BRANCH="$ORIG_BRANCH"
+BUILD_GIT_BRANCH="$GIT_BRANCH"
+BUILD_COMMIT_SHA="$COMMIT_SHA"
+BUILD_COMMIT_SHORT="$COMMIT_SHORT"
+BUILD_COMMIT_SUBJECT="$COMMIT_SUBJECT"
+BUILD_PR_NUM="${PR_NUM:-}"
+METAEOF
 
 # ---- Build via PTS force-install ----
 echo "--- Building MariaDB from $BRANCH (PTS install) ---"
