@@ -104,14 +104,14 @@ COMMIT_SHORT=$(git rev-parse --short HEAD)
 COMMIT_SUBJECT=$(git log -1 --format=%s HEAD)
 GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "")
 METADATA_FILE="$HOME/.mariadb-blob-build-meta"
-cat > "$METADATA_FILE" <<METAEOF
-BUILD_BRANCH="$ORIG_BRANCH"
-BUILD_GIT_BRANCH="$GIT_BRANCH"
-BUILD_COMMIT_SHA="$COMMIT_SHA"
-BUILD_COMMIT_SHORT="$COMMIT_SHORT"
-BUILD_COMMIT_SUBJECT="$COMMIT_SUBJECT"
-BUILD_PR_NUM="${PR_NUM:-}"
-METAEOF
+printf '%s\n' \
+    "BUILD_BRANCH='${ORIG_BRANCH//\'/\'\\\'\'}'" \
+    "BUILD_GIT_BRANCH='${GIT_BRANCH//\'/\'\\\'\'}'" \
+    "BUILD_COMMIT_SHA='$COMMIT_SHA'" \
+    "BUILD_COMMIT_SHORT='$COMMIT_SHORT'" \
+    "BUILD_COMMIT_SUBJECT='${COMMIT_SUBJECT//\'/\'\\\'\'}'" \
+    "BUILD_PR_NUM='${PR_NUM:-}'" \
+    > "$METADATA_FILE"
 
 # ---- Build via PTS force-install ----
 echo "--- Building MariaDB from $BRANCH (PTS install) ---"
