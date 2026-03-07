@@ -14,9 +14,14 @@
 
 set -e
 
-if [ -z "$MARIADB_SRC_DIR" ]; then
-    echo "ERROR: MARIADB_SRC_DIR must be set to the MariaDB source directory" >&2
-    exit 1
+if [ -z "${MARIADB_SRC_DIR:-}" ]; then
+    # PTS may not propagate env vars; read from file written by build.sh
+    if [ -f "$DEBUG_REAL_HOME/.mariadb-blob-src-dir" ]; then
+        MARIADB_SRC_DIR=$(cat "$DEBUG_REAL_HOME/.mariadb-blob-src-dir")
+    else
+        echo "ERROR: MARIADB_SRC_DIR must be set to the MariaDB source directory" >&2
+        exit 1
+    fi
 fi
 
 if [ ! -f "$MARIADB_SRC_DIR/CMakeLists.txt" ]; then

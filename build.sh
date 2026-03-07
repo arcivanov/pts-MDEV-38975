@@ -88,7 +88,9 @@ git submodule update --init --recursive
 
 # ---- Build via PTS force-install ----
 echo "--- Building MariaDB from $BRANCH (PTS install) ---"
+# PTS may not propagate env vars to install.sh; persist for install.sh to read
 export MARIADB_SRC_DIR="$REPO_PATH"
+echo "$REPO_PATH" > "$HOME/.mariadb-blob-src-dir"
 phoronix-test-suite force-install local/mariadb-blob-1.2.0
 
 # Verify install actually succeeded (PTS may return 0 on failure)
