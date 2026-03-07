@@ -94,7 +94,8 @@ echo "$REPO_PATH" > "$HOME/.mariadb-blob-src-dir"
 phoronix-test-suite force-install local/mariadb-blob-1.2.0
 
 # Verify install actually succeeded (PTS may return 0 on failure)
-if [ ! -x "$HOME/mariadb-blob" ] || [ ! -d "$HOME/mariadb_/bin" ]; then
+PTS_INSTALL_DIR="$HOME/.phoronix-test-suite/installed-tests/local/mariadb-blob-1.2.0"
+if [ ! -x "$PTS_INSTALL_DIR/mariadb-blob" ] || [ ! -d "$PTS_INSTALL_DIR/mariadb_/bin" ]; then
     echo "ERROR: PTS install did not produce expected artifacts."
     echo "Check PTS output above for errors."
     exit 1
