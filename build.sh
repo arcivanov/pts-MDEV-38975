@@ -117,7 +117,9 @@ printf '%s\n' \
 echo "--- Building MariaDB from $BRANCH (PTS install) ---"
 # PTS may not propagate env vars to install.sh; persist for install.sh to read
 export MARIADB_SRC_DIR="$REPO_PATH"
+export TEMP_ENGINE="${TEMP_ENGINE:-}"
 echo "$REPO_PATH" > "$HOME/.mariadb-blob-src-dir"
+echo "${TEMP_ENGINE:-}" > "$HOME/.mariadb-blob-temp-engine"
 # Remove any existing symlink so PTS creates a fresh directory
 # (otherwise PTS follows the symlink and clobbers an existing build slot)
 PTS_INSTALL_DIR="$HOME/.phoronix-test-suite/installed-tests/local/mariadb-blob-1.2.0"

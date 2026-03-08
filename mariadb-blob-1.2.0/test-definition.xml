@@ -155,6 +155,23 @@
           <Name>blob_mixed (variable size, all cases)</Name>
           <Value>blob_mixed</Value>
         </Entry>
+        <!-- Explicit MEMORY temp table with BLOB: Aria on baseline, HEAP on MDEV-38975 -->
+        <Entry>
+          <Name>heap_blob_case_a (explicit MEMORY, 1-5B blobs)</Name>
+          <Value>heap_blob_case_a</Value>
+        </Entry>
+        <Entry>
+          <Name>heap_blob_case_b (explicit MEMORY, 1-10KB blobs)</Name>
+          <Value>heap_blob_case_b</Value>
+        </Entry>
+        <Entry>
+          <Name>heap_blob_case_c (explicit MEMORY, 20-50KB blobs)</Name>
+          <Value>heap_blob_case_c</Value>
+        </Entry>
+        <Entry>
+          <Name>heap_blob_mixed (explicit MEMORY, mixed blobs)</Name>
+          <Value>heap_blob_mixed</Value>
+        </Entry>
       </Menu>
     </Option>
     <Option>

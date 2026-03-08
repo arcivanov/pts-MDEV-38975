@@ -42,7 +42,7 @@ BENCH_DURATION="${BENCH_DURATION:-120}"
 BENCH_THREADS="${BENCH_THREADS:-1,16,64}"
 FORCE_TIMES="${FORCE_TIMES_TO_RUN:-3}"
 
-DEFAULT_TESTS="oltp_read_write,blob_group_by,blob_distinct,blob_union,blob_count_distinct,blob_group_concat,blob_window_func,blob_cte,blob_recursive_cte,blob_orderby_groupby,blob_rollup,blob_insert_select,blob_case_a,blob_case_b,blob_case_c,blob_mixed,is_columns,is_tables_join,is_routines,is_views,is_triggers,show_columns_loop,is_group_by_complex,geom_distinct"
+DEFAULT_TESTS="oltp_read_write,blob_group_by,blob_distinct,blob_union,blob_count_distinct,blob_group_concat,blob_window_func,blob_cte,blob_recursive_cte,blob_orderby_groupby,blob_rollup,blob_insert_select,blob_case_a,blob_case_b,blob_case_c,blob_mixed,heap_blob_case_a,heap_blob_case_b,heap_blob_case_c,heap_blob_mixed,is_columns,is_tables_join,is_routines,is_views,is_triggers,show_columns_loop,is_group_by_complex,geom_distinct"
 BENCH_TESTS="${BENCH_TESTS:-$DEFAULT_TESTS}"
 
 # ---- Preflight ----

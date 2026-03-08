@@ -24,6 +24,10 @@ if [ -z "${MARIADB_SRC_DIR:-}" ]; then
     fi
 fi
 
+if [ -z "${TEMP_ENGINE:-}" ] && [ -f "$DEBUG_REAL_HOME/.mariadb-blob-temp-engine" ]; then
+    TEMP_ENGINE=$(cat "$DEBUG_REAL_HOME/.mariadb-blob-temp-engine")
+fi
+
 if [ ! -f "$MARIADB_SRC_DIR/CMakeLists.txt" ]; then
     echo "ERROR: $MARIADB_SRC_DIR does not look like a MariaDB source tree" >&2
     exit 1
@@ -70,8 +74,8 @@ RAM8P="$(($SYS_MEMORY * 75 / 100))"
     --innodb-log-file-size=1G \
     --innodb-buffer-pool-size=${RAM8P}M \
     --query-cache-size=64M \
-    --max-heap-table-size=512M \
-    --tmp-table-size=2G \
+    --max-heap-table-size=16G \
+    --tmp-table-size=16G \
     --basedir="$HOME/mariadb_" \
     --ldata="$HOME/mariadb_/.data"
 
@@ -84,8 +88,8 @@ if [ "$(whoami)" = "root" ]; then
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
         --max_connections=8200 \
-        --max-heap-table-size=512M \
-        --tmp-table-size=2G \
+        --max-heap-table-size=16G \
+        --tmp-table-size=16G \
         --user=root \
         --datadir="$HOME/mariadb_/.data" &
 else
@@ -94,8 +98,8 @@ else
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
         --max_connections=8200 \
-        --max-heap-table-size=512M \
-        --tmp-table-size=2G \
+        --max-heap-table-size=16G \
+        --tmp-table-size=16G \
         --datadir="$HOME/mariadb_/.data" &
 fi
 sleep 5
@@ -337,18 +341,18 @@ INSERT INTO blob_case_b (text_col)
 SELECT REPEAT(MD5(seq % 2000), 30 + (seq % 2000) % 280)
 FROM seq_1_to_10000;
 
--- Case C: large blobs (20-50KB) — 2K rows, ~500 unique values
+-- Case C: large blobs (20-50KB) — 10K rows, ~2K unique values
 CREATE TABLE blob_case_c (
   id INT AUTO_INCREMENT PRIMARY KEY,
   text_col MEDIUMTEXT NOT NULL
 ) ENGINE=InnoDB;
 
 INSERT INTO blob_case_c (text_col)
-SELECT REPEAT(MD5(seq % 500), 600 + (seq % 500) * 2)
-FROM seq_1_to_2000;
+SELECT REPEAT(MD5(seq % 2000), 625 + (seq % 2000) % 938)
+FROM seq_1_to_10000;
 
--- Mixed: all three cases — 10K rows
--- 40% Case A (1-5B), 40% Case B (1-10KB), 20% Case C (20-50KB)
+-- Mixed: all three cases — 20K rows
+-- 30% Case A (1-5B), 30% Case B (1-10KB), 40% Case C (20-50KB)
 CREATE TABLE blob_mixed (
   id INT AUTO_INCREMENT PRIMARY KEY,
   text_col MEDIUMTEXT NOT NULL
@@ -356,11 +360,11 @@ CREATE TABLE blob_mixed (
 
 INSERT INTO blob_mixed (text_col)
 SELECT CASE
-  WHEN seq % 5 < 2 THEN LEFT(MD5(seq % 10000), 1 + (seq % 5))
-  WHEN seq % 5 < 4 THEN REPEAT(MD5(seq % 2000), 30 + (seq % 200))
-  ELSE REPEAT(MD5(seq % 500), 600 + (seq % 500) * 2)
+  WHEN seq % 10 < 3 THEN LEFT(MD5(seq % 10000), 1 + (seq % 5))
+  WHEN seq % 10 < 6 THEN REPEAT(MD5(seq % 2000), 30 + (seq % 200))
+  ELSE REPEAT(MD5(seq % 2000), 625 + (seq % 2000) % 938)
 END
-FROM seq_1_to_10000;
+FROM seq_1_to_20000;
 
 BLOBSQL
 
@@ -387,9 +391,11 @@ THREADS="$2"
 RUNSCRIPT_OUTER
 
 # Inject resolved values into the run script
+HEAP_ENGINE_CLAUSE="${TEMP_ENGINE:+ ENGINE=$TEMP_ENGINE}"
 cat >> mariadb-blob <<RUNSCRIPT_VARS
 DB_USER="$DB_USER"
 SOCKET="$SOCKET"
+HEAP_ENGINE_CLAUSE="$HEAP_ENGINE_CLAUSE"
 RUNSCRIPT_VARS
 
 cat >> mariadb-blob <<'RUNSCRIPT_BODY'
@@ -496,6 +502,23 @@ case "$TEST" in
         ;;
     blob_mixed)
         QUERY="SELECT SQL_NO_CACHE COUNT(*) FROM (SELECT DISTINCT text_col FROM blob_mixed) t"
+        ;;
+    heap_blob_case_a)
+        # Explicit temp table with tiny BLOBs (Case A: 1-5 bytes)
+        # Engine controlled by TEMP_ENGINE env var at build time
+        QUERY="CREATE TEMPORARY TABLE tmp_heap_a (id INT AUTO_INCREMENT PRIMARY KEY, text_col TEXT)${HEAP_ENGINE_CLAUSE}; INSERT INTO tmp_heap_a (text_col) SELECT text_col FROM blob_case_a; SELECT COUNT(DISTINCT text_col) FROM tmp_heap_a; DROP TEMPORARY TABLE tmp_heap_a"
+        ;;
+    heap_blob_case_b)
+        # Explicit temp table with medium BLOBs (Case B: 1-10KB)
+        QUERY="CREATE TEMPORARY TABLE tmp_heap_b (id INT AUTO_INCREMENT PRIMARY KEY, text_col TEXT)${HEAP_ENGINE_CLAUSE}; INSERT INTO tmp_heap_b (text_col) SELECT text_col FROM blob_case_b; SELECT COUNT(DISTINCT text_col) FROM tmp_heap_b; DROP TEMPORARY TABLE tmp_heap_b"
+        ;;
+    heap_blob_case_c)
+        # Explicit temp table with large BLOBs (Case C: 20-50KB)
+        QUERY="CREATE TEMPORARY TABLE tmp_heap_c (id INT AUTO_INCREMENT PRIMARY KEY, text_col MEDIUMTEXT)${HEAP_ENGINE_CLAUSE}; INSERT INTO tmp_heap_c (text_col) SELECT text_col FROM blob_case_c; SELECT COUNT(DISTINCT text_col) FROM tmp_heap_c; DROP TEMPORARY TABLE tmp_heap_c"
+        ;;
+    heap_blob_mixed)
+        # Explicit temp table with mixed BLOBs (all cases)
+        QUERY="CREATE TEMPORARY TABLE tmp_heap_m (id INT AUTO_INCREMENT PRIMARY KEY, text_col MEDIUMTEXT)${HEAP_ENGINE_CLAUSE}; INSERT INTO tmp_heap_m (text_col) SELECT text_col FROM blob_mixed; SELECT COUNT(DISTINCT text_col) FROM tmp_heap_m; DROP TEMPORARY TABLE tmp_heap_m"
         ;;
     *)
         echo "Unknown test: $TEST" >&2

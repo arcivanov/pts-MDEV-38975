@@ -81,6 +81,19 @@ can coexist. The run script activates the right build by identifier.
 ./build.sh ~/mariadb-server PR:4735         # GitHub PR (fetched from origin)
 ```
 
+The `TEMP_ENGINE` environment variable controls the engine used by `heap_blob_*`
+tests. User-issued `CREATE TEMPORARY TABLE` uses the `default_tmp_storage_engine`
+(InnoDB) regardless of column types; it does not go through the optimizer's
+`choose_engine()` path that selects HEAP for internal temp tables. On baseline,
+`CREATE TEMPORARY TABLE ... ENGINE=MEMORY` with BLOB columns errors out
+(`ER_TABLE_CANT_HANDLE_BLOB`) because the HEAP engine sets `HA_NO_BLOBS`. Set
+`TEMP_ENGINE=MEMORY` for the MDEV-38975 build so those tests use HEAP:
+
+```bash
+./build.sh ~/mariadb-server 10.11                      # baseline: InnoDB temp tables
+TEMP_ENGINE=MEMORY ./build.sh ~/mariadb-server PR:4735  # PR: HEAP temp tables
+```
+
 If the branch or PR is not available locally, `build.sh` fetches it from origin
 automatically.
 
@@ -140,14 +153,32 @@ phoronix-test-suite upload-result mdev38975-comparison
 
 Environment variables control what gets run:
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `BENCH_TESTS` | all 24 tests | Comma-separated test names |
-| `BENCH_THREADS` | `1,16,64` | Comma-separated thread counts |
-| `BENCH_DURATION` | `120` | Seconds per test run |
-| `FORCE_TIMES_TO_RUN` | `3` | Runs per configuration (for statistical stability) |
+| Variable | Default | Phase | Description |
+|----------|---------|-------|-------------|
+| `TEMP_ENGINE` | *(unset)* | Build | Engine for `heap_blob_*` tests (set to `MEMORY` for MDEV-38975) |
+| `BENCH_TESTS` | all 28 tests | Run | Comma-separated test names |
+| `BENCH_THREADS` | `1,16,64` | Run | Comma-separated thread counts |
+| `BENCH_DURATION` | `120` | Run | Seconds per test run |
+| `FORCE_TIMES_TO_RUN` | `3` | Run | Runs per configuration (for statistical stability) |
 
-Example — quick run with fewer tests:
+### Full A/B reproduction
+
+```bash
+# Build baseline (InnoDB temp tables for heap_blob_* tests)
+./build.sh ~/mariadb-server 10.11
+
+# Build MDEV-38975 (HEAP temp tables for heap_blob_* tests)
+TEMP_ENGINE=MEMORY ./build.sh ~/mariadb-server MDEV-38975
+
+# Run baseline, then PR — all 28 tests, 120s per test, 3 runs per config
+BENCH_THREADS="1,16,64,128" ./run-benchmark.sh 10.11
+BENCH_THREADS="1,16,64,128" ./run-benchmark.sh MDEV-38975
+
+# View comparison
+phoronix-test-suite result-file-to-text mdev38975-comparison
+```
+
+### Quick run with fewer tests
 
 ```bash
 BENCH_TESTS="oltp_read_write,blob_case_b,is_columns" \
@@ -216,7 +247,26 @@ for the implementation.
 | `blob_case_a` | 1–5 bytes | Single-record inline, zero-copy |
 | `blob_case_b` | 1–10KB | Single-run contiguous, zero-copy |
 | `blob_case_c` | 20–50KB | Multi-run, reassembly |
-| `blob_mixed` | All three (40/40/20%) | Mixed |
+| `blob_mixed` | All three (30/30/40%) | Mixed |
+
+### Explicit temp table tests
+
+These tests exercise `CREATE TEMPORARY TABLE` with BLOB columns, creating,
+populating from source data, querying, and dropping in a loop. The engine is
+controlled by the `TEMP_ENGINE` environment variable at build time:
+
+- **Baseline build** (`./build.sh`): no ENGINE clause, uses InnoDB (default)
+- **MDEV-38975 build** (`TEMP_ENGINE=MEMORY ./build.sh`): `ENGINE=MEMORY`, uses HEAP
+
+This isolates the HEAP BLOB performance by comparing InnoDB temp tables (baseline)
+against HEAP temp tables (MDEV-38975) for the same workload.
+
+| Test | Source table | Description |
+|------|-------------|-------------|
+| `heap_blob_case_a` | `blob_case_a` (50K rows) | 1–5B blobs |
+| `heap_blob_case_b` | `blob_case_b` (10K rows) | 1–10KB blobs |
+| `heap_blob_case_c` | `blob_case_c` (10K rows) | 20–50KB blobs |
+| `heap_blob_mixed` | `blob_mixed` (20K rows) | All cases mixed |
 
 ## Internal temporary table coverage analysis
 
@@ -255,26 +305,27 @@ MariaDB 10.11 source code (`sql/sql_select.cc`, `sql/sql_union.cc`,
 | 18 | SHOW commands (I_S materialization) | `get_all_tables()` → `create_schema_table()` | `show_columns_loop` |
 | 19 | Complex GROUP BY on I_S (double temp) | I_S materialization + aggregation temp table | `is_group_by_complex` |
 | 20 | `GEOMETRY` operations | `Field_geom` → `MYSQL_TYPE_GEOMETRY` | `geom_distinct` |
+| 21 | Explicit `CREATE TEMPORARY TABLE` with BLOB | InnoDB on baseline; `ENGINE=MEMORY` (HEAP) on MDEV-38975 via `TEMP_ENGINE` | `heap_blob_case_a/b/c/mixed` |
 
 ### Intentionally excluded
 
 | # | Operation | Reason |
 |---|-----------|--------|
-| 21 | Semi-join duplicate weedout | Rowid-only temp table, no BLOB columns involved |
-| 22 | Expression cache | Disabled for HEAP+blob by design (key format incompatibility) |
-| 23 | Multi-table `UPDATE`/`DELETE` | DML operations; not suitable for read-loop benchmarking |
-| 24 | `JSON_TABLE()` | Same `create_tmp_table()` path as derived tables (covered by #13) |
-| 25 | `VIEW` with `TEMPTABLE` algorithm | Same materialization path as derived tables (covered by #13) |
-| 26 | `HAVING` clause | Uses the GROUP BY temp table, not a separate allocation |
-| 27 | `UNION ALL` | No deduplication needed; does not create a temp table for uniqueness |
-| 28 | Cursor `FETCH INTO` | Stored procedure construct; same `create_tmp_table()` path |
-| 29 | `SELECT` handler / engine pushdown | Engine-specific (Spider); not applicable to standard workloads |
-| 30 | I_S privilege tables | No LONGTEXT columns (USER/SCHEMA/TABLE/COLUMN_PRIVILEGES) |
-| 31 | `SHOW DATABASES` / `SHOW STATUS` / `SHOW VARIABLES` | I_S.SCHEMATA/STATUS/VARIABLES have no LONGTEXT columns |
-| 32 | `SHOW PROCESSLIST` | INFO is LONGTEXT but result depends on concurrent queries; non-deterministic |
-| 33 | I_S.EVENTS | Would need event scheduler enabled; niche use case |
-| 34 | I_S.PARTITIONS | Partition expressions are typically short LONGTEXT; marginal benefit |
-| 35 | FK constraint checking | I_S query is a tiny fraction of the DML operation |
+| 22 | Semi-join duplicate weedout | Rowid-only temp table, no BLOB columns involved |
+| 23 | Expression cache | Disabled for HEAP+blob by design (key format incompatibility) |
+| 24 | Multi-table `UPDATE`/`DELETE` | DML operations; not suitable for read-loop benchmarking |
+| 25 | `JSON_TABLE()` | Same `create_tmp_table()` path as derived tables (covered by #13) |
+| 26 | `VIEW` with `TEMPTABLE` algorithm | Same materialization path as derived tables (covered by #13) |
+| 27 | `HAVING` clause | Uses the GROUP BY temp table, not a separate allocation |
+| 28 | `UNION ALL` | No deduplication needed; does not create a temp table for uniqueness |
+| 29 | Cursor `FETCH INTO` | Stored procedure construct; same `create_tmp_table()` path |
+| 30 | `SELECT` handler / engine pushdown | Engine-specific (Spider); not applicable to standard workloads |
+| 31 | I_S privilege tables | No LONGTEXT columns (USER/SCHEMA/TABLE/COLUMN_PRIVILEGES) |
+| 32 | `SHOW DATABASES` / `SHOW STATUS` / `SHOW VARIABLES` | I_S.SCHEMATA/STATUS/VARIABLES have no LONGTEXT columns |
+| 33 | `SHOW PROCESSLIST` | INFO is LONGTEXT but result depends on concurrent queries; non-deterministic |
+| 34 | I_S.EVENTS | Would need event scheduler enabled; niche use case |
+| 35 | I_S.PARTITIONS | Partition expressions are typically short LONGTEXT; marginal benefit |
+| 36 | FK constraint checking | I_S query is a tiny fraction of the DML operation |
 
 ## File structure
 

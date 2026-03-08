@@ -19,8 +19,8 @@ if [ "$(whoami)" = "root" ] ; then
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
         --max_connections=800 \
-        --max-heap-table-size=512M \
-        --tmp-table-size=2G \
+        --max-heap-table-size=16G \
+        --tmp-table-size=16G \
         --max_prepared_stmt_count=90000 \
         --user=root \
         --datadir="$HOME/mariadb_/.data" </dev/null >/dev/null 2>&1 &
@@ -30,8 +30,8 @@ else
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
         --max_connections=800 \
-        --max-heap-table-size=512M \
-        --tmp-table-size=2G \
+        --max-heap-table-size=16G \
+        --tmp-table-size=16G \
         --max_prepared_stmt_count=90000 \
         --datadir="$HOME/mariadb_/.data" </dev/null >/dev/null 2>&1 &
 fi
