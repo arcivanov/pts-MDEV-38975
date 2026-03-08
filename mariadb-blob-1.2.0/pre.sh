@@ -2,18 +2,13 @@
 # Restore datadir from snapshot and start MariaDB server before each test run
 cd "$HOME/mariadb_"
 
-# Ensure no server is running before restoring datadir
-pkill -u "$(id -u)" mariadbd 2>/dev/null || true
-# Wait for mariadbd to fully exit (InnoDB shutdown with large buffer pool can be slow)
-for i in $(seq 1 60); do
+# Kill any running server — datadir is restored from snapshot so clean shutdown is unnecessary
+pkill -9 -u "$(id -u)" mariadbd 2>/dev/null || true
+# Wait for process to fully exit (avoid zombie/lingering pid)
+for i in $(seq 1 10); do
     pgrep -u "$(id -u)" mariadbd >/dev/null 2>&1 || break
     sleep 1
 done
-# Force-kill if still alive after 60s
-if pgrep -u "$(id -u)" mariadbd >/dev/null 2>&1; then
-    pkill -9 -u "$(id -u)" mariadbd 2>/dev/null || true
-    sleep 2
-fi
 
 # Fast restore: file copy instead of SQL import
 if [ -d "$HOME/mariadb_/.data-snapshot" ]; then
