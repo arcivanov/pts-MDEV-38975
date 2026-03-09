@@ -86,23 +86,28 @@
         </Entry>
         <!-- INFORMATION_SCHEMA deep tests (LONGTEXT metadata columns) -->
         <Entry>
-          <Name>is_routines (stored proc definitions, LONGTEXT)</Name>
+          <!-- stored proc definitions, LONGTEXT -->
+          <Name>is_routines</Name>
           <Value>is_routines</Value>
         </Entry>
         <Entry>
-          <Name>is_views (view definitions, LONGTEXT)</Name>
+          <!-- view definitions, LONGTEXT -->
+          <Name>is_views</Name>
           <Value>is_views</Value>
         </Entry>
         <Entry>
-          <Name>is_triggers (trigger bodies, LONGTEXT)</Name>
+          <!-- trigger bodies, LONGTEXT -->
+          <Name>is_triggers</Name>
           <Value>is_triggers</Value>
         </Entry>
         <Entry>
-          <Name>show_columns_loop (ORM/admin tool pattern)</Name>
+          <!-- ORM/admin tool pattern -->
+          <Name>show_columns_loop</Name>
           <Value>show_columns_loop</Value>
         </Entry>
         <Entry>
-          <Name>is_group_by_complex (double temp table: I_S + aggregation)</Name>
+          <!-- double temp table: I_S + aggregation -->
+          <Name>is_group_by_complex</Name>
           <Value>is_group_by_complex</Value>
         </Entry>
         <!-- Additional temp table pathway tests -->
@@ -140,36 +145,44 @@
         </Entry>
         <!-- BLOB size case tests (HEAP continuation chain layouts) -->
         <Entry>
-          <Name>blob_case_a (1-5 bytes, single-record zero-copy)</Name>
+          <!-- 1-5 bytes, single-record zero-copy -->
+          <Name>blob_case_a</Name>
           <Value>blob_case_a</Value>
         </Entry>
         <Entry>
-          <Name>blob_case_b (1-10KB, single-run zero-copy)</Name>
+          <!-- 1-10KB, single-run zero-copy -->
+          <Name>blob_case_b</Name>
           <Value>blob_case_b</Value>
         </Entry>
         <Entry>
-          <Name>blob_case_c (20-50KB, multi-run reassembly)</Name>
+          <!-- 20-50KB, multi-run reassembly -->
+          <Name>blob_case_c</Name>
           <Value>blob_case_c</Value>
         </Entry>
         <Entry>
-          <Name>blob_mixed (variable size, all cases)</Name>
+          <!-- variable size, all cases -->
+          <Name>blob_mixed</Name>
           <Value>blob_mixed</Value>
         </Entry>
         <!-- Explicit MEMORY temp table with BLOB: Aria on baseline, HEAP on MDEV-38975 -->
         <Entry>
-          <Name>heap_blob_case_a (explicit MEMORY, 1-5B blobs)</Name>
+          <!-- explicit MEMORY, 1-5B blobs -->
+          <Name>heap_blob_case_a</Name>
           <Value>heap_blob_case_a</Value>
         </Entry>
         <Entry>
-          <Name>heap_blob_case_b (explicit MEMORY, 1-10KB blobs)</Name>
+          <!-- explicit MEMORY, 1-10KB blobs -->
+          <Name>heap_blob_case_b</Name>
           <Value>heap_blob_case_b</Value>
         </Entry>
         <Entry>
-          <Name>heap_blob_case_c (explicit MEMORY, 20-50KB blobs)</Name>
+          <!-- explicit MEMORY, 20-50KB blobs -->
+          <Name>heap_blob_case_c</Name>
           <Value>heap_blob_case_c</Value>
         </Entry>
         <Entry>
-          <Name>heap_blob_mixed (explicit MEMORY, mixed blobs)</Name>
+          <!-- explicit MEMORY, mixed blobs -->
+          <Name>heap_blob_mixed</Name>
           <Value>heap_blob_mixed</Value>
         </Entry>
       </Menu>
