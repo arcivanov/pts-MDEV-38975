@@ -1,0 +1,2050 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v10.8.4-->
+<PhoronixTestSuite>
+  <Generated>
+    <Title>mdev38975-comparison</Title>
+    <LastModified>2026-03-09 21:37:36</LastModified>
+    <TestClient>Phoronix Test Suite v10.8.4</TestClient>
+    <Description>2 x Intel Xeon E5-2699A v4 testing with a HP ProLiant DL360 Gen9 (P89 BIOS) and Matrox MGA G200EH on Fedora Linux 43 via the Phoronix Test Suite.</Description>
+    <Notes></Notes>
+    <InternalTags></InternalTags>
+    <ReferenceID></ReferenceID>
+    <PreSetEnvironmentVariables></PreSetEnvironmentVariables>
+  </Generated>
+  <System>
+    <Identifier>14f96a2e080</Identifier>
+    <Hardware>Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2</Hardware>
+    <Software>OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768</Software>
+    <User>admin</User>
+    <TimeStamp>2026-03-09 03:00:34</TimeStamp>
+    <TestClientVersion>10.8.4</TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-redhat-linux --disable-libssp --disable-libunwind-exceptions --enable-__cxa_atexit --enable-bootstrap --enable-cet --enable-checking=release --enable-gnu-indirect-function --enable-gnu-unique-object --enable-initfini-array --enable-languages=c,c++,fortran,objc,obj-c++,ada,go,d,m2,cobol,lto --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-multilib --enable-offload-defaulted --enable-offload-targets=nvptx-none,amdgcn-amdhsa --enable-plugin --enable-shared --enable-threads=posix --mandir=\/usr\/share\/man --with-arch_32=i686 --with-build-config=bootstrap-lto --with-gcc-major-version-only --with-libstdcxx-zoneinfo=\/usr\/share\/zoneinfo --with-linker-hash-style=gnu --with-tune=generic --without-cuda-driver","cpu-scaling-governor":"intel_cpufreq performance","cpu-microcode":"0xb000041","kernel-extra-details":"Transparent Huge Pages: madvise","security":"SELinux + gather_data_sampling: Not affected + ghostwrite: Not affected + indirect_target_selection: Not affected + itlb_multihit: KVM: Mitigation of Split huge pages + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable + mds: Mitigation of Clear buffers; SMT vulnerable + meltdown: Mitigation of PTI + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable + old_microcode: Not affected + reg_file_data_sampling: Not affected + retbleed: Not affected + spec_rstack_overflow: Not affected + spec_store_bypass: Mitigation of SSB disabled via prctl + spectre_v1: Mitigation of usercopy\/swapgs barriers and __user pointer sanitization + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected + srbds: Not affected + tsa: Not affected + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable + vmscape: Mitigation of IBPB before exit userspace"}</JSON>
+  </System>
+  <System>
+    <Identifier>MDEV-38975</Identifier>
+    <Hardware>Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2</Hardware>
+    <Software>OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768</Software>
+    <User>admin</User>
+    <TimeStamp>2026-03-09 12:26:36</TimeStamp>
+    <TestClientVersion>10.8.4</TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-redhat-linux --disable-libssp --disable-libunwind-exceptions --enable-__cxa_atexit --enable-bootstrap --enable-cet --enable-checking=release --enable-gnu-indirect-function --enable-gnu-unique-object --enable-initfini-array --enable-languages=c,c++,fortran,objc,obj-c++,ada,go,d,m2,cobol,lto --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-multilib --enable-offload-defaulted --enable-offload-targets=nvptx-none,amdgcn-amdhsa --enable-plugin --enable-shared --enable-threads=posix --mandir=\/usr\/share\/man --with-arch_32=i686 --with-build-config=bootstrap-lto --with-gcc-major-version-only --with-libstdcxx-zoneinfo=\/usr\/share\/zoneinfo --with-linker-hash-style=gnu --with-tune=generic --without-cuda-driver","cpu-scaling-governor":"intel_cpufreq performance","cpu-microcode":"0xb000041","kernel-extra-details":"Transparent Huge Pages: madvise","security":"SELinux + gather_data_sampling: Not affected + ghostwrite: Not affected + indirect_target_selection: Not affected + itlb_multihit: KVM: Mitigation of Split huge pages + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable + mds: Mitigation of Clear buffers; SMT vulnerable + meltdown: Mitigation of PTI + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable + old_microcode: Not affected + reg_file_data_sampling: Not affected + retbleed: Not affected + spec_rstack_overflow: Not affected + spec_store_bypass: Mitigation of SSB disabled via prctl + spectre_v1: Mitigation of usercopy\/swapgs barriers and __user pointer sanitization + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected + srbds: Not affected + tsa: Not affected + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable + vmscape: Mitigation of IBPB before exit userspace"}</JSON>
+  </System>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>oltp_read_write 16</Arguments>
+    <Description>Test: oltp_read_write - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>9364.19</Value>
+        <RawString>14590.26:3549.94:9952.38</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.65:121.06:120.08"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>9752.79</Value>
+        <RawString>14270.27:4299.79:10688.32</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.60:120.09:120.08"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>oltp_read_write 64</Arguments>
+    <Description>Test: oltp_read_write - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>9440.46</Value>
+        <RawString>15570.39:4065.27:8685.73</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.77:120.91:123.53"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>9403.24</Value>
+        <RawString>15381.4:4198.85:8629.46</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.44:122.17:120.24"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>oltp_read_write 128</Arguments>
+    <Description>Test: oltp_read_write - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>13050.00</Value>
+        <RawString>16580.81:6507.04:16062.14</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.82:121.36:120.59"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>11643.15</Value>
+        <RawString>16407.76:5547.55:12974.15</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.05:121.06:121.46"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_group_by 16</Arguments>
+    <Description>Test: blob_group_by - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.07</Value>
+        <RawString>2.06:2.08:2.07</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.59:122.86:122.70"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.14:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.70:121.58:121.18"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_group_by 64</Arguments>
+    <Description>Test: blob_group_by - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.12:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"151.72:150.12:150.96"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"148.92:146.97:149.32"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_group_by 128</Arguments>
+    <Description>Test: blob_group_by - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"169.78:170.48:171.17"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"173.40:173.91:172.91"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_distinct 16</Arguments>
+    <Description>Test: blob_distinct - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.60</Value>
+        <RawString>4.59:4.58:4.62</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.56:120.65:121.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4.89</Value>
+        <RawString>4.99:4.95:4.72</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.17:121.21:120.40"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_distinct 64</Arguments>
+    <Description>Test: blob_distinct - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.71</Value>
+        <RawString>4.75:4.67:4.71</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"129.46:127.46:127.85"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4.80</Value>
+        <RawString>4.8:4.8:4.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.59:122.88:122.80"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_distinct 128</Arguments>
+    <Description>Test: blob_distinct - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.26</Value>
+        <RawString>4.26:4.26:4.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"129.29:126.63:126.32"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4.26</Value>
+        <RawString>4.26:4.26:4.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"130.14:130.02:129.81"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_union 16</Arguments>
+    <Description>Test: blob_union - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.85</Value>
+        <RawString>2.87:2.89:2.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.36:122.80:120.30"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>84.21</Value>
+        <RawString>83.28:84.38:84.96</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.38:120.12:119.88"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_union 64</Arguments>
+    <Description>Test: blob_union - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>3.18</Value>
+        <RawString>3.14:3.2:3.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"137.75:138.46:138.56"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>282.14</Value>
+        <RawString>281.82:282.2:282.41</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.90:119.98:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_union 128</Arguments>
+    <Description>Test: blob_union - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>3.20</Value>
+        <RawString>3.2:3.2:3.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"156.97:151.93:151.36"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>320.23</Value>
+        <RawString>318.87:320.85:320.98</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.64:119.99:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_count_distinct 16</Arguments>
+    <Description>Test: blob_count_distinct - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.49</Value>
+        <RawString>4.44:4.44:4.6</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.19:121.40:121.85"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>141.15</Value>
+        <RawString>140.17:141.54:141.74</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.13:119.98:119.94"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_count_distinct 64</Arguments>
+    <Description>Test: blob_count_distinct - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.80</Value>
+        <RawString>4.8:4.8:4.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"129.57:129.91:128.73"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>468.77</Value>
+        <RawString>468.03:469.15:469.12</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.79:119.98:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_count_distinct 128</Arguments>
+    <Description>Test: blob_count_distinct - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.26</Value>
+        <RawString>4.26:4.26:4.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"128.60:129.54:134.72"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>536.73</Value>
+        <RawString>533.95:538.14:538.1</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.65:120.00:119.98"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_group_concat 16</Arguments>
+    <Description>Test: blob_group_concat - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>28.03</Value>
+        <RawString>28.93:27.5:27.66</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.48:119.91:119.96"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>26.50</Value>
+        <RawString>26.4:26.49:26.61</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.48:120.21:119.95"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_group_concat 64</Arguments>
+    <Description>Test: blob_group_concat - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>37.75</Value>
+        <RawString>37.61:37.72:37.93</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.40:121.04:121.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>37.26</Value>
+        <RawString>37.21:37.29:37.27</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.11:120.99:120.95"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_group_concat 128</Arguments>
+    <Description>Test: blob_group_concat - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>38.42</Value>
+        <RawString>38.32:38.95:38</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.85:121.31:121.27"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>43.53</Value>
+        <RawString>43.73:43.72:43.15</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.04:120.96:121.19"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_window_func 16</Arguments>
+    <Description>Test: blob_window_func - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>7.05</Value>
+        <RawString>7.12:7.05:6.99</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.09:120.72:120.67"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>458.60</Value>
+        <RawString>456.5:459.55:459.75</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.56:120.01:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_window_func 64</Arguments>
+    <Description>Test: blob_window_func - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>6.40</Value>
+        <RawString>6.4:6.4:6.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.71:122.08:122.49"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1033.62</Value>
+        <RawString>1033.36:1034.2:1033.3</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.56:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_window_func 128</Arguments>
+    <Description>Test: blob_window_func - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>6.40</Value>
+        <RawString>6.4:6.4:6.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"135.70:135.61:135.62"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>877.90</Value>
+        <RawString>868.05:873.67:891.98</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.49:120.01:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_cte 16</Arguments>
+    <Description>Test: blob_cte - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>13.22</Value>
+        <RawString>13.4:13.26:12.99</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.34:120.03:119.95"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>94.13</Value>
+        <RawString>93.94:94.5:93.95</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.39:119.96:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_cte 64</Arguments>
+    <Description>Test: blob_cte - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>12.78</Value>
+        <RawString>12.75:12.79:12.79</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.66:122.61:123.32"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>114.18</Value>
+        <RawString>114.6:115.04:112.91</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.77:120.01:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_cte 128</Arguments>
+    <Description>Test: blob_cte - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>11.73</Value>
+        <RawString>11.73:11.73:11.73</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.27:125.15:127.50"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>122.98</Value>
+        <RawString>122.9:123.56:122.48</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.84:120.01:120.04"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_recursive_cte 16</Arguments>
+    <Description>Test: blob_recursive_cte - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>53.36</Value>
+        <RawString>53.61:53.75:52.71</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.95:120.04:120.11"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>48.91</Value>
+        <RawString>47.41:49.62:49.7</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.95:119.98:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_recursive_cte 64</Arguments>
+    <Description>Test: blob_recursive_cte - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>49.03</Value>
+        <RawString>48.86:49.07:49.17</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.09:119.99:119.94"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>37.08</Value>
+        <RawString>38.33:36.47:36.45</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.31:119.96:120.25"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_recursive_cte 128</Arguments>
+    <Description>Test: blob_recursive_cte - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>47.64</Value>
+        <RawString>47.75:47.32:47.84</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.69:120.40:121.73"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>30.17</Value>
+        <RawString>29.73:29.9:30.89</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.91:121.43:121.70"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_orderby_groupby 16</Arguments>
+    <Description>Test: blob_orderby_groupby - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.14</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"124.25:123.81:123.11"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2.24</Value>
+        <RawString>2.21:2.25:2.25</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.53:122.77:123.45"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_orderby_groupby 64</Arguments>
+    <Description>Test: blob_orderby_groupby - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"149.44:145.33:147.70"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"150.76:147.47:148.86"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_orderby_groupby 128</Arguments>
+    <Description>Test: blob_orderby_groupby - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"177.58:178.21:176.79"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2.13</Value>
+        <RawString>2.13:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"170.17:170.86:171.35"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_rollup 16</Arguments>
+    <Description>Test: blob_rollup - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>64.11</Value>
+        <RawString>64.15:64.1:64.09</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.26:119.95:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>125.43</Value>
+        <RawString>124.45:125.97:125.88</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.41:120.02:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_rollup 64</Arguments>
+    <Description>Test: blob_rollup - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>59.22</Value>
+        <RawString>59.4:59.45:58.81</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.18:120.13:120.01"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>163.92</Value>
+        <RawString>164.65:164.76:162.35</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.94:119.99:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_rollup 128</Arguments>
+    <Description>Test: blob_rollup - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>54.60</Value>
+        <RawString>54.4:53.42:55.99</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.02:120.42:120.61"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>178.40</Value>
+        <RawString>177.71:179.02:178.47</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.76:120.02:120.02"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_insert_select 16</Arguments>
+    <Description>Test: blob_insert_select - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>477.95</Value>
+        <RawString>475.1:478.57:480.17</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.37:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>483.02</Value>
+        <RawString>483.08:482.25:483.73</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.00:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_insert_select 64</Arguments>
+    <Description>Test: blob_insert_select - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>398.31</Value>
+        <RawString>394.52:399.55:400.85</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.85:119.98:120.03"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>403.19</Value>
+        <RawString>402.63:402.81:404.14</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.70:119.98:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_insert_select 128</Arguments>
+    <Description>Test: blob_insert_select - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>373.09</Value>
+        <RawString>368.75:374.6:375.92</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.56:120.01:119.98"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>376.95</Value>
+        <RawString>373.81:378.55:378.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.48:120.01:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_a 16</Arguments>
+    <Description>Test: blob_case_a - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.36</Value>
+        <RawString>4.34:4.35:4.38</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.00:121.18:121.35"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4.91</Value>
+        <RawString>4.93:4.92:4.89</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.82:120.90:120.76"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_a 64</Arguments>
+    <Description>Test: blob_case_a - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.41</Value>
+        <RawString>4.26:4.48:4.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.94:125.91:126.88"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4.80</Value>
+        <RawString>4.8:4.8:4.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"130.40:130.70:128.82"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_a 128</Arguments>
+    <Description>Test: blob_case_a - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.26</Value>
+        <RawString>4.26:4.26:4.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"146.31:144.95:142.24"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4.26</Value>
+        <RawString>4.26:4.26:4.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"134.43:134.03:135.17"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_b 16</Arguments>
+    <Description>Test: blob_case_b - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>18.68</Value>
+        <RawString>18.89:18.55:18.61</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.81:119.95:120.05"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>22.78</Value>
+        <RawString>22.99:23.11:22.24</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.99:120.09:120.09"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_b 64</Arguments>
+    <Description>Test: blob_case_b - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>16.50</Value>
+        <RawString>16.57:17.07:15.86</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.81:122.75:120.63"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>21.02</Value>
+        <RawString>21.4:21.06:20.6</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.67:121.05:120.74"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_b 128</Arguments>
+    <Description>Test: blob_case_b - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>14.93</Value>
+        <RawString>14.93:14.93:14.93</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.92:124.67:123.61"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>18.13</Value>
+        <RawString>18.13:18.13:18.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.63:121.93:122.48"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_c 16</Arguments>
+    <Description>Test: blob_case_c - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>7.26</Value>
+        <RawString>7.08:7.2:7.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.81:121.02:120.45"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>11.54</Value>
+        <RawString>11.4:11.63:11.6</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.65:120.92:120.84"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_c 64</Arguments>
+    <Description>Test: blob_case_c - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>8.67</Value>
+        <RawString>8.55:8.6:8.85</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.07:120.85:123.25"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>20.50</Value>
+        <RawString>20.14:20.65:20.7</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.50:120.84:121.07"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_case_c 128</Arguments>
+    <Description>Test: blob_case_c - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>8.18</Value>
+        <RawString>8.53:7.48:8.53</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"135.29:122.03:135.11"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>17.88</Value>
+        <RawString>18.13:17.63:17.89</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"125.64:122.40:124.13"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_mixed 16</Arguments>
+    <Description>Test: blob_mixed - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>8.75</Value>
+        <RawString>8.66:8.8:8.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.70:120.69:120.10"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>11.41</Value>
+        <RawString>11.33:11.5:11.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.13:121.04:120.70"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_mixed 64</Arguments>
+    <Description>Test: blob_mixed - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>8.57</Value>
+        <RawString>8.53:8.58:8.59</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"125.36:125.39:123.05"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>11.21</Value>
+        <RawString>11.2:11.22:11.2</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.73:121.77:121.29"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_mixed 128</Arguments>
+    <Description>Test: blob_mixed - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>7.46</Value>
+        <RawString>7.46:7.46:7.46</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"124.90:125.02:123.50"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>9.87</Value>
+        <RawString>9.76:10.08:9.76</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.57:124.85:122.20"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_a 16</Arguments>
+    <Description>Test: heap_blob_case_a - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.60</Value>
+        <RawString>4.61:4.6:4.59</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.13:121.07:121.25"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>70.22</Value>
+        <RawString>65.53:71.58:73.54</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.26:120.04:119.93"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_a 64</Arguments>
+    <Description>Test: heap_blob_case_a - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.75</Value>
+        <RawString>4.8:4.78:4.67</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"131.73:131.15:128.06"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>63.67</Value>
+        <RawString>63.92:63.43:63.66</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.39:119.98:119.89"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_a 128</Arguments>
+    <Description>Test: heap_blob_case_a - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4.35</Value>
+        <RawString>4.26:4.39:4.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"138.27:143.07:142.87"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>28.70</Value>
+        <RawString>16.5:16.68:52.93</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.69:123.15:122.10"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_b 16</Arguments>
+    <Description>Test: heap_blob_case_b - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>14.75</Value>
+        <RawString>14.65:14.25:15.35</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.03:120.39:119.93"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>37.80</Value>
+        <RawString>37.83:37.84:37.73</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.79:119.89:120.08"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_b 64</Arguments>
+    <Description>Test: heap_blob_case_b - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>7.66</Value>
+        <RawString>8.43:6.65:7.89</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"124.97:123.59:123.99"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>120.34</Value>
+        <RawString>121.56:119.93:119.54</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.82:119.98:120.04"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_b 128</Arguments>
+    <Description>Test: heap_blob_case_b - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>7.23</Value>
+        <RawString>8.1:5.89:7.69</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"136.05:130.34:131.93"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>124.86</Value>
+        <RawString>124.84:125.32:124.43</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.81:121.21:120.83"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_c 16</Arguments>
+    <Description>Test: heap_blob_case_c - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>3.10</Value>
+        <RawString>3.14:3.2:2.95</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.21:127.71:121.68"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>6.73</Value>
+        <RawString>6.66:6.75:6.77</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.14:121.24:121.40"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_c 64</Arguments>
+    <Description>Test: heap_blob_case_c - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.35</Value>
+        <RawString>2.66:1.73:2.66</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"155.08:131.83:136.30"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>20.88</Value>
+        <RawString>20.81:21.28:20.55</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.37:122.84:122.49"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_case_c 128</Arguments>
+    <Description>Test: heap_blob_case_c - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.17</Value>
+        <RawString>2.24:2.13:2.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"142.51:208.57:165.36"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>22.19</Value>
+        <RawString>22.3:22.15:22.13</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"126.05:125.72:126.21"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_mixed 16</Arguments>
+    <Description>Test: heap_blob_mixed - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>3.19</Value>
+        <RawString>3.35:2.76:3.47</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.94:121.37:121.55"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>7.47</Value>
+        <RawString>7.42:7.45:7.55</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.01:120.88:121.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_mixed 64</Arguments>
+    <Description>Test: heap_blob_mixed - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.33</Value>
+        <RawString>2.57:1.9:2.51</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"128.62:134.25:128.70"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>24.49</Value>
+        <RawString>24.32:24.42:24.74</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.86:122.30:121.83"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>heap_blob_mixed 128</Arguments>
+    <Description>Test: heap_blob_mixed - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>2.30</Value>
+        <RawString>2.38:2.13:2.38</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"172.38:182.89:139.21"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>26.14</Value>
+        <RawString>26.2:26.18:26.05</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.48:124.05:125.12"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_columns 16</Arguments>
+    <Description>Test: is_columns - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>710.85</Value>
+        <RawString>703.62:706.34:722.6</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.52:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1266.84</Value>
+        <RawString>1269:1264.6:1266.91</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.02:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_columns 64</Arguments>
+    <Description>Test: is_columns - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>577.56</Value>
+        <RawString>576.59:578.24:577.86</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.73:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>3528.23</Value>
+        <RawString>3525.63:3528.82:3530.23</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.46:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_columns 128</Arguments>
+    <Description>Test: is_columns - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>545.57</Value>
+        <RawString>544.85:545.94:545.91</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.59:119.99:119.99"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>3779.99</Value>
+        <RawString>3768.24:3786.9:3784.82</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.45:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_tables_join 16</Arguments>
+    <Description>Test: is_tables_join - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>502.18</Value>
+        <RawString>499.75:503.54:503.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.23:119.99:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>520.91</Value>
+        <RawString>518.28:523.38:521.06</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.23:120.01:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_tables_join 64</Arguments>
+    <Description>Test: is_tables_join - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>620.65</Value>
+        <RawString>618.96:621.73:621.26</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.67:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1370.48</Value>
+        <RawString>1369.48:1373.19:1368.76</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.74:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_tables_join 128</Arguments>
+    <Description>Test: is_tables_join - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>531.55</Value>
+        <RawString>530.7:532.11:531.85</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.65:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1406.11</Value>
+        <RawString>1400.77:1408.17:1409.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.51:120.01:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_routines 16</Arguments>
+    <Description>Test: is_routines - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>1562.89</Value>
+        <RawString>1557.15:1560.31:1571.21</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.16:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1662.15</Value>
+        <RawString>1654.3:1661.83:1670.32</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.19:119.99:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_routines 64</Arguments>
+    <Description>Test: is_routines - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>1595.93</Value>
+        <RawString>1595.41:1594.93:1597.45</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.68:120.02:119.98"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2312.33</Value>
+        <RawString>2311.41:2314.76:2310.82</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.41:120.01:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_routines 128</Arguments>
+    <Description>Test: is_routines - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>1569.10</Value>
+        <RawString>1563.41:1569.67:1574.23</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.67:120.00:119.99"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>2273.01</Value>
+        <RawString>2270.06:2270.37:2278.6</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.52:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_views 16</Arguments>
+    <Description>Test: is_views - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>1615.78</Value>
+        <RawString>1608.38:1619.14:1619.83</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.27:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1631.37</Value>
+        <RawString>1628.55:1632.64:1632.91</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.29:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_views 64</Arguments>
+    <Description>Test: is_views - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4478.96</Value>
+        <RawString>4475.05:4480.49:4481.33</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.72:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4526.70</Value>
+        <RawString>4523.48:4535.63:4521</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.71:120.00:119.98"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_views 128</Arguments>
+    <Description>Test: is_views - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>4698.29</Value>
+        <RawString>4684.23:4716.8:4693.84</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.56:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>4753.55</Value>
+        <RawString>4739.16:4765.5:4756</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.55:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_triggers 16</Arguments>
+    <Description>Test: is_triggers - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>642.85</Value>
+        <RawString>640.35:644.7:643.49</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.26:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>639.24</Value>
+        <RawString>636.4:640.83:640.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.24:119.99:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_triggers 64</Arguments>
+    <Description>Test: is_triggers - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>1792.35</Value>
+        <RawString>1788.87:1793.44:1794.74</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.67:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1803.11</Value>
+        <RawString>1801.5:1805.09:1802.75</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.76:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_triggers 128</Arguments>
+    <Description>Test: is_triggers - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>1877.34</Value>
+        <RawString>1869.28:1881.78:1880.95</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.46:120.00:120.01"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1916.07</Value>
+        <RawString>1914.33:1917.32:1916.55</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.73:120.00:120.01"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>show_columns_loop 16</Arguments>
+    <Description>Test: show_columns_loop - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>435.21</Value>
+        <RawString>433.21:436.24:436.17</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.36:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>301.82</Value>
+        <RawString>299.55:303.03:302.88</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.45:120.01:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>show_columns_loop 64</Arguments>
+    <Description>Test: show_columns_loop - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>395.19</Value>
+        <RawString>393.73:396.12:395.73</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.70:120.01:120.01"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>294.50</Value>
+        <RawString>290.7:296.39:296.4</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.74:119.99:120.02"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>show_columns_loop 128</Arguments>
+    <Description>Test: show_columns_loop - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>356.82</Value>
+        <RawString>355.22:357.7:357.53</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.56:120.02:119.99"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>283.39</Value>
+        <RawString>280.44:282.92:286.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.62:119.98:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_group_by_complex 16</Arguments>
+    <Description>Test: is_group_by_complex - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>370.17</Value>
+        <RawString>369.8:370.2:370.5</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.18:120.00:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>1157.39</Value>
+        <RawString>1153.59:1157.78:1160.8</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.17:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_group_by_complex 64</Arguments>
+    <Description>Test: is_group_by_complex - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>331.21</Value>
+        <RawString>330.26:331.36:332</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.75:119.98:119.99"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>3127.47</Value>
+        <RawString>3121.85:3130.57:3130</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.78:120.00:120.00"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>is_group_by_complex 128</Arguments>
+    <Description>Test: is_group_by_complex - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>302.98</Value>
+        <RawString>302.63:303.86:302.45</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.61:120.00:119.98"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>3093.55</Value>
+        <RawString>3081.93:3104.7:3094.01</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.53:120.00:119.99"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>geom_distinct 16</Arguments>
+    <Description>Test: geom_distinct - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>8.95</Value>
+        <RawString>8.93:8.93:9</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"119.88:120.01:120.33"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>11.72</Value>
+        <RawString>11.85:11.79:11.52</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.11:119.75:120.18"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>geom_distinct 64</Arguments>
+    <Description>Test: geom_distinct - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>8.55</Value>
+        <RawString>8.53:8.6:8.53</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.70:121.88:121.03"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>11.13</Value>
+        <RawString>11.15:11.15:11.1</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"124.35:124.04:123.64"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>geom_distinct 128</Arguments>
+    <Description>Test: geom_distinct - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>7.46</Value>
+        <RawString>7.46:7.46:7.46</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"128.13:129.58:131.55"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>9.32</Value>
+        <RawString>9.14:9.23:9.6</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"126.49:127.07:133.85"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+</PhoronixTestSuite>
