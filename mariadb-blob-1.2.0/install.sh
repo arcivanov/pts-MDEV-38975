@@ -458,8 +458,11 @@ case "$TEST" in
     blob_cte)
         QUERY="WITH blob_cte AS (SELECT text_col, k FROM blob_data WHERE id <= 10000) SELECT SQL_NO_CACHE COUNT(*) FROM (SELECT DISTINCT a.text_col FROM blob_cte a JOIN blob_cte b ON a.k = b.k AND a.text_col <> b.text_col) t"
         ;;
-    blob_recursive_cte)
-        QUERY="WITH RECURSIVE rcte AS (SELECT id, text_col, k FROM blob_data WHERE id = 1 UNION ALL SELECT b.id, b.text_col, b.k FROM blob_data b JOIN rcte r ON b.id = r.id + 1 WHERE b.id <= 500) SELECT SQL_NO_CACHE COUNT(*) FROM (SELECT DISTINCT text_col FROM rcte) t"
+    blob_cte_materialize)
+        # CTE materialized into HEAP temp table (dual reference forces materialization),
+        # then self-joined on k with blob comparison — exercises blob chain write (20K blobs),
+        # blob chain read (~100K reads via nested loop), and blob data comparison (~50K pairs)
+        QUERY="WITH cte AS (SELECT text_col, text_col2, k FROM blob_data WHERE id <= 10000) SELECT SQL_NO_CACHE SUM(LENGTH(a.text_col) + LENGTH(b.text_col2)) FROM cte a JOIN cte b ON a.k = b.k WHERE a.text_col > b.text_col"
         ;;
     blob_orderby_groupby)
         QUERY="SELECT SQL_NO_CACHE COUNT(*) FROM (SELECT text_col, COUNT(*) cnt FROM blob_data GROUP BY text_col ORDER BY k LIMIT 100) t"

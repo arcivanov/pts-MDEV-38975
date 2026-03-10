@@ -128,8 +128,9 @@
           <Value>blob_cte</Value>
         </Entry>
         <Entry>
-          <Name>blob_recursive_cte</Name>
-          <Value>blob_recursive_cte</Value>
+          <!-- CTE materialization + blob read/write pressure via self-join -->
+          <Name>blob_cte_materialize</Name>
+          <Value>blob_cte_materialize</Value>
         </Entry>
         <Entry>
           <Name>blob_orderby_groupby</Name>

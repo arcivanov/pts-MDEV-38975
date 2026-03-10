@@ -22,7 +22,7 @@ if [ "$(whoami)" = "root" ] ; then
         --innodb-log-file-size=1G \
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
-        --max_connections=800 \
+        --max_connections=8200 \
         --max-heap-table-size=16G \
         --tmp-table-size=16G \
         --max_prepared_stmt_count=90000 \
@@ -33,7 +33,7 @@ else
         --innodb-log-file-size=1G \
         --innodb-buffer-pool-size=${RAM8P}M \
         --query-cache-size=64M \
-        --max_connections=800 \
+        --max_connections=8200 \
         --max-heap-table-size=16G \
         --tmp-table-size=16G \
         --max_prepared_stmt_count=90000 \

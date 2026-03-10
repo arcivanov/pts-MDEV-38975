@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v10.8.4-->
+<PhoronixTestSuite>
+  <Generated>
+    <Title>mdev38975-cte-materialize</Title>
+    <LastModified>2026-03-10 02:32:26</LastModified>
+    <TestClient>Phoronix Test Suite v10.8.4</TestClient>
+    <Description>2 x Intel Xeon E5-2699A v4 testing with a HP ProLiant DL360 Gen9 (P89 BIOS) and Matrox MGA G200EH on Fedora Linux 43 via the Phoronix Test Suite.</Description>
+    <Notes></Notes>
+    <InternalTags></InternalTags>
+    <ReferenceID></ReferenceID>
+    <PreSetEnvironmentVariables></PreSetEnvironmentVariables>
+  </Generated>
+  <System>
+    <Identifier>14f96a2e080</Identifier>
+    <Hardware>Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2</Hardware>
+    <Software>OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768</Software>
+    <User>admin</User>
+    <TimeStamp>2026-03-10 01:53:35</TimeStamp>
+    <TestClientVersion>10.8.4</TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-redhat-linux --disable-libssp --disable-libunwind-exceptions --enable-__cxa_atexit --enable-bootstrap --enable-cet --enable-checking=release --enable-gnu-indirect-function --enable-gnu-unique-object --enable-initfini-array --enable-languages=c,c++,fortran,objc,obj-c++,ada,go,d,m2,cobol,lto --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-multilib --enable-offload-defaulted --enable-offload-targets=nvptx-none,amdgcn-amdhsa --enable-plugin --enable-shared --enable-threads=posix --mandir=\/usr\/share\/man --with-arch_32=i686 --with-build-config=bootstrap-lto --with-gcc-major-version-only --with-libstdcxx-zoneinfo=\/usr\/share\/zoneinfo --with-linker-hash-style=gnu --with-tune=generic --without-cuda-driver","cpu-scaling-governor":"intel_cpufreq performance","cpu-microcode":"0xb000041","kernel-extra-details":"Transparent Huge Pages: madvise","security":"SELinux + gather_data_sampling: Not affected + ghostwrite: Not affected + indirect_target_selection: Not affected + itlb_multihit: KVM: Mitigation of Split huge pages + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable + mds: Mitigation of Clear buffers; SMT vulnerable + meltdown: Mitigation of PTI + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable + old_microcode: Not affected + reg_file_data_sampling: Not affected + retbleed: Not affected + spec_rstack_overflow: Not affected + spec_store_bypass: Mitigation of SSB disabled via prctl + spectre_v1: Mitigation of usercopy\/swapgs barriers and __user pointer sanitization + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected + srbds: Not affected + tsa: Not affected + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable + vmscape: Mitigation of IBPB before exit userspace"}</JSON>
+  </System>
+  <System>
+    <Identifier>MDEV-38975</Identifier>
+    <Hardware>Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2</Hardware>
+    <Software>OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768</Software>
+    <User>admin</User>
+    <TimeStamp>2026-03-10 02:13:04</TimeStamp>
+    <TestClientVersion>10.8.4</TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-redhat-linux --disable-libssp --disable-libunwind-exceptions --enable-__cxa_atexit --enable-bootstrap --enable-cet --enable-checking=release --enable-gnu-indirect-function --enable-gnu-unique-object --enable-initfini-array --enable-languages=c,c++,fortran,objc,obj-c++,ada,go,d,m2,cobol,lto --enable-libstdcxx-backtrace --enable-link-serialization=1 --enable-multilib --enable-offload-defaulted --enable-offload-targets=nvptx-none,amdgcn-amdhsa --enable-plugin --enable-shared --enable-threads=posix --mandir=\/usr\/share\/man --with-arch_32=i686 --with-build-config=bootstrap-lto --with-gcc-major-version-only --with-libstdcxx-zoneinfo=\/usr\/share\/zoneinfo --with-linker-hash-style=gnu --with-tune=generic --without-cuda-driver","cpu-scaling-governor":"intel_cpufreq performance","cpu-microcode":"0xb000041","kernel-extra-details":"Transparent Huge Pages: madvise","security":"SELinux + gather_data_sampling: Not affected + ghostwrite: Not affected + indirect_target_selection: Not affected + itlb_multihit: KVM: Mitigation of Split huge pages + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable + mds: Mitigation of Clear buffers; SMT vulnerable + meltdown: Mitigation of PTI + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable + old_microcode: Not affected + reg_file_data_sampling: Not affected + retbleed: Not affected + spec_rstack_overflow: Not affected + spec_store_bypass: Mitigation of SSB disabled via prctl + spectre_v1: Mitigation of usercopy\/swapgs barriers and __user pointer sanitization + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected + srbds: Not affected + tsa: Not affected + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable + vmscape: Mitigation of IBPB before exit userspace"}</JSON>
+  </System>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_cte_materialize 16</Arguments>
+    <Description>Test: blob_cte_materialize - Threads: 16</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>12.48</Value>
+        <RawString>12.5:12.52:12.43</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.43:119.95:120.00"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>12.18</Value>
+        <RawString>12.13:12.23:12.18</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"120.10:120.01:119.86"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_cte_materialize 64</Arguments>
+    <Description>Test: blob_cte_materialize - Threads: 64</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>16.22</Value>
+        <RawString>16.25:16.25:16.15</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"122.15:122.24:121.45"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>15.84</Value>
+        <RawString>15.64:15.7:16.17</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"121.44:122.09:121.87"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>local/mariadb-blob-1.2.0</Identifier>
+    <Title>MariaDB BLOB</Title>
+    <AppVersion>10.11</AppVersion>
+    <Arguments>blob_cte_materialize 128</Arguments>
+    <Description>Test: blob_cte_materialize - Threads: 128</Description>
+    <Scale>Queries Per Second</Scale>
+    <Proportion>HIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>14f96a2e080</Identifier>
+        <Value>17.94</Value>
+        <RawString>18.02:17.94:17.85</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.39:123.24:122.90"}</JSON>
+      </Entry>
+      <Entry>
+        <Identifier>MDEV-38975</Identifier>
+        <Value>18.35</Value>
+        <RawString>18.34:18.3:18.41</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-march=native -pie -fPIC -fstack-protector -O3 -lpcre2-8 -lcrypt -lsystemd -lm -lpthread -ldl"},"test-run-times":"123.24:122.91:123.40"}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+</PhoronixTestSuite>

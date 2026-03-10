@@ -1,0 +1,721 @@
+=== Running blob_cte_materialize: baseline ===
+Activating build: 14f96a2e080
+=== MariaDB MDEV-38975 Benchmark — Run ===
+
+Identifier:  14f96a2e080
+Result file: mdev38975-cte-materialize
+Duration:    120s per test
+Threads:     16,64,128
+Tests:       blob_cte_materialize
+Runs/config: 3
+
+
+
+These are the default configuration options for when running the Phoronix Test Suite in a batch mode (i.e. running phoronix-test-suite batch-benchmark universe). Running in a batch mode is designed to be as autonomous as possible, except for where you'd like any end-user interaction.
+
+    Save test results when in batch mode (Y/n):     Open the web browser automatically when in batch mode (y/N):     Auto upload the results to OpenBenchmarking.org (Y/n):     Prompt for test identifier (Y/n):     Prompt for test description (Y/n):     Prompt for saved results file-name (Y/n):     Run all test options (Y/n): 
+Batch settings saved.
+
+
+Description: MariaDB 14f96a2e080 commit 14f96a2e080 — MDEV-38928 Assertion `undo_no <= 1' failed in trx_t::reset_and_truncate_undo()
+
+
+--- Running: blob_cte_materialize / 16 threads (14f96a2e080) ---
+
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0
+    System Test Configuration
+    Using Pre-Set Run Option: blob_cte_materialize
+
+    Using Pre-Set Run Option: 16
+
+Phoronix Test Suite v10.8.4
+System Information
+
+egrep: warning: egrep is obsolescent; using grep -E
+
+  PROCESSOR:              2 x Intel Xeon E5-2699A v4 @ 3.60GHz
+    Core Count:           44                                       
+    Thread Count:         88                                       
+    Extensions:           SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:           110 MB                                   
+    Microcode:            0xb000041                                
+    Core Family:          Broadwell                                
+    Scaling Driver:       intel_cpufreq performance                
+
+  GRAPHICS:               Matrox MGA G200EH
+    Screen:               1024x768         
+
+  MOTHERBOARD:            HP ProLiant DL360 Gen9
+    BIOS Version:         P89                                 
+    Chipset:              Intel Xeon E7 v4/Xeon               
+    Network:              4 x Broadcom NetXtreme BCM5719 PCIe 
+                          + 2 x Intel 10-Gigabit X540-AT2     
+
+  MEMORY:                 256GB
+
+  DISK:                   4 x 1000GB Samsung SSD 870
+    File-System:          btrfs                                                                           
+    Mount Options:        discard=async relatime rw seclabel space_cache=v2 ssd subvol=/home subvolid=257 
+    Disk Scheduler:       BFQ                                                                             
+    Disk Details:         RAID1 Block Size: 4096                                                          
+
+  OPERATING SYSTEM:       Fedora Linux 43
+    Kernel:               6.18.16-200.fc43.x86_64 (x86_64)                                                                                                                  
+    Compiler:             GCC 15.2.1 20260123                                                                                                                               
+    Security:             SELinux                                                                                                                                           
+                          + gather_data_sampling: Not affected                                                                                                              
+                          + ghostwrite: Not affected                                                                                                                        
+                          + indirect_target_selection: Not affected                                                                                                         
+                          + itlb_multihit: KVM: Mitigation of Split huge pages                                                                                              
+                          + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                                                                
+                          + mds: Mitigation of Clear buffers; SMT vulnerable                                                                                                
+                          + meltdown: Mitigation of PTI                                                                                                                     
+                          + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + old_microcode: Not affected                                                                                                                     
+                          + reg_file_data_sampling: Not affected                                                                                                            
+                          + retbleed: Not affected                                                                                                                          
+                          + spec_rstack_overflow: Not affected                                                                                                              
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                                                         
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                                                              
+                          + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected 
+                          + srbds: Not affected                                                                                                                             
+                          + tsa: Not affected                                                                                                                               
+                          + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + vmscape: Mitigation of IBPB before exit userspace                                                                                               
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0 [Test: blob_cte_materialize - Threads: 16]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 7 Minutes [01:59 UTC] 
+        Running Pre-Test Script @ 01:53:37
+        Started Run 1 @ 01:53:44
+        Started Run 2 @ 01:55:48
+        Started Run 3 @ 01:57:52
+        Running Post-Test Script @ 01:59:54
+
+    Test: blob_cte_materialize - Threads: 16:
+        12.5
+        12.52
+        12.43
+
+    Average: 12.48 Queries Per Second
+    Deviation: 0.38%
+
+
+
+--- Running: blob_cte_materialize / 64 threads (14f96a2e080) ---
+
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0
+    System Test Configuration
+    Using Pre-Set Run Option: blob_cte_materialize
+
+    Using Pre-Set Run Option: 64
+
+Phoronix Test Suite v10.8.4
+System Information
+
+egrep: warning: egrep is obsolescent; using grep -E
+
+  PROCESSOR:              2 x Intel Xeon E5-2699A v4 @ 3.60GHz
+    Core Count:           44                                       
+    Thread Count:         88                                       
+    Extensions:           SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:           110 MB                                   
+    Microcode:            0xb000041                                
+    Core Family:          Broadwell                                
+    Scaling Driver:       intel_cpufreq performance                
+
+  GRAPHICS:               Matrox MGA G200EH
+    Screen:               1024x768         
+
+  MOTHERBOARD:            HP ProLiant DL360 Gen9
+    BIOS Version:         P89                                 
+    Chipset:              Intel Xeon E7 v4/Xeon               
+    Network:              4 x Broadcom NetXtreme BCM5719 PCIe 
+                          + 2 x Intel 10-Gigabit X540-AT2     
+
+  MEMORY:                 256GB
+
+  DISK:                   4 x 1000GB Samsung SSD 870
+    File-System:          btrfs                                                                           
+    Mount Options:        discard=async relatime rw seclabel space_cache=v2 ssd subvol=/home subvolid=257 
+    Disk Scheduler:       BFQ                                                                             
+    Disk Details:         RAID1 Block Size: 4096                                                          
+
+  OPERATING SYSTEM:       Fedora Linux 43
+    Kernel:               6.18.16-200.fc43.x86_64 (x86_64)                                                                                                                  
+    Compiler:             GCC 15.2.1 20260123                                                                                                                               
+    Security:             SELinux                                                                                                                                           
+                          + gather_data_sampling: Not affected                                                                                                              
+                          + ghostwrite: Not affected                                                                                                                        
+                          + indirect_target_selection: Not affected                                                                                                         
+                          + itlb_multihit: KVM: Mitigation of Split huge pages                                                                                              
+                          + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                                                                
+                          + mds: Mitigation of Clear buffers; SMT vulnerable                                                                                                
+                          + meltdown: Mitigation of PTI                                                                                                                     
+                          + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + old_microcode: Not affected                                                                                                                     
+                          + reg_file_data_sampling: Not affected                                                                                                            
+                          + retbleed: Not affected                                                                                                                          
+                          + spec_rstack_overflow: Not affected                                                                                                              
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                                                         
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                                                              
+                          + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected 
+                          + srbds: Not affected                                                                                                                             
+                          + tsa: Not affected                                                                                                                               
+                          + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + vmscape: Mitigation of IBPB before exit userspace                                                                                               
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0 [Test: blob_cte_materialize - Threads: 64]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 7 Minutes [02:06 UTC] 
+        Running Pre-Test Script @ 02:00:00
+        Started Run 1 @ 02:00:08
+        Started Run 2 @ 02:02:14
+        Started Run 3 @ 02:04:20
+        Running Post-Test Script @ 02:06:23
+
+    Test: blob_cte_materialize - Threads: 64:
+        16.25
+        16.25
+        16.15
+
+    Average: 16.22 Queries Per Second
+    Deviation: 0.36%
+
+
+
+--- Running: blob_cte_materialize / 128 threads (14f96a2e080) ---
+
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0
+    System Test Configuration
+    Using Pre-Set Run Option: blob_cte_materialize
+
+    Using Pre-Set Run Option: 128
+
+Phoronix Test Suite v10.8.4
+System Information
+
+egrep: warning: egrep is obsolescent; using grep -E
+
+  PROCESSOR:              2 x Intel Xeon E5-2699A v4 @ 3.60GHz
+    Core Count:           44                                       
+    Thread Count:         88                                       
+    Extensions:           SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:           110 MB                                   
+    Microcode:            0xb000041                                
+    Core Family:          Broadwell                                
+    Scaling Driver:       intel_cpufreq performance                
+
+  GRAPHICS:               Matrox MGA G200EH
+    Screen:               1024x768         
+
+  MOTHERBOARD:            HP ProLiant DL360 Gen9
+    BIOS Version:         P89                                 
+    Chipset:              Intel Xeon E7 v4/Xeon               
+    Network:              4 x Broadcom NetXtreme BCM5719 PCIe 
+                          + 2 x Intel 10-Gigabit X540-AT2     
+
+  MEMORY:                 256GB
+
+  DISK:                   4 x 1000GB Samsung SSD 870
+    File-System:          btrfs                                                                           
+    Mount Options:        discard=async relatime rw seclabel space_cache=v2 ssd subvol=/home subvolid=257 
+    Disk Scheduler:       BFQ                                                                             
+    Disk Details:         RAID1 Block Size: 4096                                                          
+
+  OPERATING SYSTEM:       Fedora Linux 43
+    Kernel:               6.18.16-200.fc43.x86_64 (x86_64)                                                                                                                  
+    Compiler:             GCC 15.2.1 20260123                                                                                                                               
+    Security:             SELinux                                                                                                                                           
+                          + gather_data_sampling: Not affected                                                                                                              
+                          + ghostwrite: Not affected                                                                                                                        
+                          + indirect_target_selection: Not affected                                                                                                         
+                          + itlb_multihit: KVM: Mitigation of Split huge pages                                                                                              
+                          + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                                                                
+                          + mds: Mitigation of Clear buffers; SMT vulnerable                                                                                                
+                          + meltdown: Mitigation of PTI                                                                                                                     
+                          + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + old_microcode: Not affected                                                                                                                     
+                          + reg_file_data_sampling: Not affected                                                                                                            
+                          + retbleed: Not affected                                                                                                                          
+                          + spec_rstack_overflow: Not affected                                                                                                              
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                                                         
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                                                              
+                          + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected 
+                          + srbds: Not affected                                                                                                                             
+                          + tsa: Not affected                                                                                                                               
+                          + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + vmscape: Mitigation of IBPB before exit userspace                                                                                               
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0 [Test: blob_cte_materialize - Threads: 128]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 7 Minutes [02:12 UTC] 
+        Running Pre-Test Script @ 02:06:30
+        Started Run 1 @ 02:06:37
+        Started Run 2 @ 02:08:44
+        Started Run 3 @ 02:10:51
+        Running Post-Test Script @ 02:12:56
+
+    Test: blob_cte_materialize - Threads: 128:
+        18.02
+        17.94
+        17.85
+
+    Average: 17.94 Queries Per Second
+    Deviation: 0.47%
+
+
+
+=====================================================
+  Run complete: 14f96a2e080
+=====================================================
+
+View results:
+  phoronix-test-suite result-file-to-text mdev38975-cte-materialize
+
+Generate comparison PDF:
+  phoronix-test-suite result-file-to-pdf mdev38975-cte-materialize
+
+Upload to OpenBenchmarking.org:
+  phoronix-test-suite upload-result mdev38975-cte-materialize
+
+
+mdev38975-cte-materialize
+2 x Intel Xeon E5-2699A v4 testing with a HP ProLiant DL360 Gen9 (P89 BIOS) and Matrox MGA G200EH on Fedora Linux 43 via the Phoronix Test Suite.
+
+
+14f96a2e080: 
+
+	Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2
+
+	OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 16
+Queries Per Second > Higher Is Better
+14f96a2e080 . 12.48 |===========================================================
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 64
+Queries Per Second > Higher Is Better
+14f96a2e080 . 16.22 |===========================================================
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 128
+Queries Per Second > Higher Is Better
+14f96a2e080 . 17.94 |===========================================================
+
+
+Baseline exit: 0
+=== Running blob_cte_materialize: MDEV-38975 ===
+Activating build: MDEV-38975
+=== MariaDB MDEV-38975 Benchmark — Run ===
+
+Identifier:  MDEV-38975
+Result file: mdev38975-cte-materialize
+Duration:    120s per test
+Threads:     16,64,128
+Tests:       blob_cte_materialize
+Runs/config: 3
+
+
+
+These are the default configuration options for when running the Phoronix Test Suite in a batch mode (i.e. running phoronix-test-suite batch-benchmark universe). Running in a batch mode is designed to be as autonomous as possible, except for where you'd like any end-user interaction.
+
+    Save test results when in batch mode (Y/n):     Open the web browser automatically when in batch mode (y/N):     Auto upload the results to OpenBenchmarking.org (Y/n):     Prompt for test identifier (Y/n):     Prompt for test description (Y/n):     Prompt for saved results file-name (Y/n):     Run all test options (Y/n): 
+Batch settings saved.
+
+
+Description: MariaDB branch MDEV-38975 commit c736807d95f — Cap `min_run_records` for small blob free-list reuse
+
+
+--- Running: blob_cte_materialize / 16 threads (MDEV-38975) ---
+
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0
+    System Test Configuration
+    Using Pre-Set Run Option: blob_cte_materialize
+
+    Using Pre-Set Run Option: 16
+
+Phoronix Test Suite v10.8.4
+System Information
+
+egrep: warning: egrep is obsolescent; using grep -E
+
+  PROCESSOR:              2 x Intel Xeon E5-2699A v4 @ 3.60GHz
+    Core Count:           44                                       
+    Thread Count:         88                                       
+    Extensions:           SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:           110 MB                                   
+    Microcode:            0xb000041                                
+    Core Family:          Broadwell                                
+    Scaling Driver:       intel_cpufreq performance                
+
+  GRAPHICS:               Matrox MGA G200EH
+    Screen:               1024x768         
+
+  MOTHERBOARD:            HP ProLiant DL360 Gen9
+    BIOS Version:         P89                                 
+    Chipset:              Intel Xeon E7 v4/Xeon               
+    Network:              4 x Broadcom NetXtreme BCM5719 PCIe 
+                          + 2 x Intel 10-Gigabit X540-AT2     
+
+  MEMORY:                 256GB
+
+  DISK:                   4 x 1000GB Samsung SSD 870
+    File-System:          btrfs                                                                           
+    Mount Options:        discard=async relatime rw seclabel space_cache=v2 ssd subvol=/home subvolid=257 
+    Disk Scheduler:       BFQ                                                                             
+    Disk Details:         RAID1 Block Size: 4096                                                          
+
+  OPERATING SYSTEM:       Fedora Linux 43
+    Kernel:               6.18.16-200.fc43.x86_64 (x86_64)                                                                                                                  
+    Compiler:             GCC 15.2.1 20260123                                                                                                                               
+    Security:             SELinux                                                                                                                                           
+                          + gather_data_sampling: Not affected                                                                                                              
+                          + ghostwrite: Not affected                                                                                                                        
+                          + indirect_target_selection: Not affected                                                                                                         
+                          + itlb_multihit: KVM: Mitigation of Split huge pages                                                                                              
+                          + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                                                                
+                          + mds: Mitigation of Clear buffers; SMT vulnerable                                                                                                
+                          + meltdown: Mitigation of PTI                                                                                                                     
+                          + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + old_microcode: Not affected                                                                                                                     
+                          + reg_file_data_sampling: Not affected                                                                                                            
+                          + retbleed: Not affected                                                                                                                          
+                          + spec_rstack_overflow: Not affected                                                                                                              
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                                                         
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                                                              
+                          + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected 
+                          + srbds: Not affected                                                                                                                             
+                          + tsa: Not affected                                                                                                                               
+                          + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + vmscape: Mitigation of IBPB before exit userspace                                                                                               
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0 [Test: blob_cte_materialize - Threads: 16]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 7 Minutes [02:19 UTC] 
+        Running Pre-Test Script @ 02:13:06
+        Started Run 1 @ 02:13:13
+        Started Run 2 @ 02:15:17
+        Started Run 3 @ 02:17:21
+        Running Post-Test Script @ 02:19:23
+
+    Test: blob_cte_materialize - Threads: 16:
+        12.13
+        12.23
+        12.18
+
+    Average: 12.18 Queries Per Second
+    Deviation: 0.41%
+
+    Queries Per Second > Higher Is Better
+    MDEV-38975 .. 12.18 |======================================================
+    14f96a2e080 . 12.48 |=======================================================
+
+
+
+--- Running: blob_cte_materialize / 64 threads (MDEV-38975) ---
+
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0
+    System Test Configuration
+    Using Pre-Set Run Option: blob_cte_materialize
+
+    Using Pre-Set Run Option: 64
+
+Phoronix Test Suite v10.8.4
+System Information
+
+egrep: warning: egrep is obsolescent; using grep -E
+
+  PROCESSOR:              2 x Intel Xeon E5-2699A v4 @ 3.60GHz
+    Core Count:           44                                       
+    Thread Count:         88                                       
+    Extensions:           SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:           110 MB                                   
+    Microcode:            0xb000041                                
+    Core Family:          Broadwell                                
+    Scaling Driver:       intel_cpufreq performance                
+
+  GRAPHICS:               Matrox MGA G200EH
+    Screen:               1024x768         
+
+  MOTHERBOARD:            HP ProLiant DL360 Gen9
+    BIOS Version:         P89                                 
+    Chipset:              Intel Xeon E7 v4/Xeon               
+    Network:              4 x Broadcom NetXtreme BCM5719 PCIe 
+                          + 2 x Intel 10-Gigabit X540-AT2     
+
+  MEMORY:                 256GB
+
+  DISK:                   4 x 1000GB Samsung SSD 870
+    File-System:          btrfs                                                                           
+    Mount Options:        discard=async relatime rw seclabel space_cache=v2 ssd subvol=/home subvolid=257 
+    Disk Scheduler:       BFQ                                                                             
+    Disk Details:         RAID1 Block Size: 4096                                                          
+
+  OPERATING SYSTEM:       Fedora Linux 43
+    Kernel:               6.18.16-200.fc43.x86_64 (x86_64)                                                                                                                  
+    Compiler:             GCC 15.2.1 20260123                                                                                                                               
+    Security:             SELinux                                                                                                                                           
+                          + gather_data_sampling: Not affected                                                                                                              
+                          + ghostwrite: Not affected                                                                                                                        
+                          + indirect_target_selection: Not affected                                                                                                         
+                          + itlb_multihit: KVM: Mitigation of Split huge pages                                                                                              
+                          + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                                                                
+                          + mds: Mitigation of Clear buffers; SMT vulnerable                                                                                                
+                          + meltdown: Mitigation of PTI                                                                                                                     
+                          + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + old_microcode: Not affected                                                                                                                     
+                          + reg_file_data_sampling: Not affected                                                                                                            
+                          + retbleed: Not affected                                                                                                                          
+                          + spec_rstack_overflow: Not affected                                                                                                              
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                                                         
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                                                              
+                          + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected 
+                          + srbds: Not affected                                                                                                                             
+                          + tsa: Not affected                                                                                                                               
+                          + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + vmscape: Mitigation of IBPB before exit userspace                                                                                               
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0 [Test: blob_cte_materialize - Threads: 64]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 5 Minutes [02:24 UTC] 
+        Running Pre-Test Script @ 02:19:29
+        Started Run 1 @ 02:19:36
+        Started Run 2 @ 02:21:42
+        Started Run 3 @ 02:23:48
+        Running Post-Test Script @ 02:25:52
+
+    Test: blob_cte_materialize - Threads: 64:
+        15.64
+        15.7
+        16.17
+
+    Average: 15.84 Queries Per Second
+    Deviation: 1.83%
+
+    Queries Per Second > Higher Is Better
+    MDEV-38975 .. 15.84 |======================================================
+    14f96a2e080 . 16.22 |=======================================================
+
+
+
+--- Running: blob_cte_materialize / 128 threads (MDEV-38975) ---
+
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0
+    System Test Configuration
+    Using Pre-Set Run Option: blob_cte_materialize
+
+    Using Pre-Set Run Option: 128
+
+Phoronix Test Suite v10.8.4
+System Information
+
+egrep: warning: egrep is obsolescent; using grep -E
+
+  PROCESSOR:              2 x Intel Xeon E5-2699A v4 @ 3.60GHz
+    Core Count:           44                                       
+    Thread Count:         88                                       
+    Extensions:           SSE 4.2 + AVX2 + AVX + RDRAND + FSGSBASE 
+    Cache Size:           110 MB                                   
+    Microcode:            0xb000041                                
+    Core Family:          Broadwell                                
+    Scaling Driver:       intel_cpufreq performance                
+
+  GRAPHICS:               Matrox MGA G200EH
+    Screen:               1024x768         
+
+  MOTHERBOARD:            HP ProLiant DL360 Gen9
+    BIOS Version:         P89                                 
+    Chipset:              Intel Xeon E7 v4/Xeon               
+    Network:              4 x Broadcom NetXtreme BCM5719 PCIe 
+                          + 2 x Intel 10-Gigabit X540-AT2     
+
+  MEMORY:                 256GB
+
+  DISK:                   4 x 1000GB Samsung SSD 870
+    File-System:          btrfs                                                                           
+    Mount Options:        discard=async relatime rw seclabel space_cache=v2 ssd subvol=/home subvolid=257 
+    Disk Scheduler:       BFQ                                                                             
+    Disk Details:         RAID1 Block Size: 4096                                                          
+
+  OPERATING SYSTEM:       Fedora Linux 43
+    Kernel:               6.18.16-200.fc43.x86_64 (x86_64)                                                                                                                  
+    Compiler:             GCC 15.2.1 20260123                                                                                                                               
+    Security:             SELinux                                                                                                                                           
+                          + gather_data_sampling: Not affected                                                                                                              
+                          + ghostwrite: Not affected                                                                                                                        
+                          + indirect_target_selection: Not affected                                                                                                         
+                          + itlb_multihit: KVM: Mitigation of Split huge pages                                                                                              
+                          + l1tf: Mitigation of PTE Inversion; VMX: conditional cache flushes SMT vulnerable                                                                
+                          + mds: Mitigation of Clear buffers; SMT vulnerable                                                                                                
+                          + meltdown: Mitigation of PTI                                                                                                                     
+                          + mmio_stale_data: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + old_microcode: Not affected                                                                                                                     
+                          + reg_file_data_sampling: Not affected                                                                                                            
+                          + retbleed: Not affected                                                                                                                          
+                          + spec_rstack_overflow: Not affected                                                                                                              
+                          + spec_store_bypass: Mitigation of SSB disabled via prctl                                                                                         
+                          + spectre_v1: Mitigation of usercopy/swapgs barriers and __user pointer sanitization                                                              
+                          + spectre_v2: Mitigation of Retpolines; IBPB: conditional; IBRS_FW; STIBP: conditional; RSB filling; PBRSB-eIBRS: Not affected; BHI: Not affected 
+                          + srbds: Not affected                                                                                                                             
+                          + tsa: Not affected                                                                                                                               
+                          + tsx_async_abort: Mitigation of Clear buffers; SMT vulnerable                                                                                    
+                          + vmscape: Mitigation of IBPB before exit userspace                                                                                               
+
+
+MariaDB BLOB 10.11:
+    local/mariadb-blob-1.2.0 [Test: blob_cte_materialize - Threads: 128]
+    Test 1 of 1
+    Estimated Trial Run Count:    3                     
+    Estimated Time To Completion: 7 Minutes [02:31 UTC] 
+        Running Pre-Test Script @ 02:25:58
+        Started Run 1 @ 02:26:05
+        Started Run 2 @ 02:28:12
+        Started Run 3 @ 02:30:19
+        Running Post-Test Script @ 02:32:25
+
+    Test: blob_cte_materialize - Threads: 128:
+        18.34
+        18.3
+        18.41
+
+    Average: 18.35 Queries Per Second
+    Deviation: 0.30%
+
+    Queries Per Second > Higher Is Better
+    14f96a2e080 . 17.94 |======================================================
+    MDEV-38975 .. 18.35 |=======================================================
+
+
+
+=====================================================
+  Run complete: MDEV-38975
+=====================================================
+
+View results:
+  phoronix-test-suite result-file-to-text mdev38975-cte-materialize
+
+Generate comparison PDF:
+  phoronix-test-suite result-file-to-pdf mdev38975-cte-materialize
+
+Upload to OpenBenchmarking.org:
+  phoronix-test-suite upload-result mdev38975-cte-materialize
+
+
+mdev38975-cte-materialize
+2 x Intel Xeon E5-2699A v4 testing with a HP ProLiant DL360 Gen9 (P89 BIOS) and Matrox MGA G200EH on Fedora Linux 43 via the Phoronix Test Suite.
+
+
+14f96a2e080: 
+
+	Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2
+
+	OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768
+
+MDEV-38975: 
+
+	Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2
+
+	OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 16
+Queries Per Second > Higher Is Better
+14f96a2e080 . 12.48 |===========================================================
+MDEV-38975 .. 12.18 |==========================================================
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 64
+Queries Per Second > Higher Is Better
+14f96a2e080 . 16.22 |===========================================================
+MDEV-38975 .. 15.84 |==========================================================
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 128
+Queries Per Second > Higher Is Better
+14f96a2e080 . 17.94 |==========================================================
+MDEV-38975 .. 18.35 |===========================================================
+
+
+PR exit: 0
+=== All done ===
+
+mdev38975-cte-materialize
+2 x Intel Xeon E5-2699A v4 testing with a HP ProLiant DL360 Gen9 (P89 BIOS) and Matrox MGA G200EH on Fedora Linux 43 via the Phoronix Test Suite.
+
+
+14f96a2e080: 
+
+	Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2
+
+	OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768
+
+MDEV-38975: 
+
+	Processor: 2 x Intel Xeon E5-2699A v4 @ 3.60GHz (44 Cores / 88 Threads), Motherboard: HP ProLiant DL360 Gen9 (P89 BIOS), Chipset: Intel Xeon E7 v4/Xeon, Memory: 256GB, Disk: 4 x 1000GB Samsung SSD 870, Graphics: Matrox MGA G200EH, Network: 4 x Broadcom NetXtreme BCM5719 PCIe + 2 x Intel 10-Gigabit X540-AT2
+
+	OS: Fedora Linux 43, Kernel: 6.18.16-200.fc43.x86_64 (x86_64), Compiler: GCC 15.2.1 20260123, File-System: btrfs, Screen Resolution: 1024x768
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 16
+Queries Per Second > Higher Is Better
+14f96a2e080 . 12.48 |===========================================================
+MDEV-38975 .. 12.18 |==========================================================
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 64
+Queries Per Second > Higher Is Better
+14f96a2e080 . 16.22 |===========================================================
+MDEV-38975 .. 15.84 |==========================================================
+
+
+MariaDB BLOB 10.11
+Test: blob_cte_materialize - Threads: 128
+Queries Per Second > Higher Is Better
+14f96a2e080 . 17.94 |==========================================================
+MDEV-38975 .. 18.35 |===========================================================
+
+
