@@ -16,7 +16,7 @@ kill_procs() {
     local label="$1" signal="${2:-TERM}"
     shift 2
     local pids
-    pids=$(pgrep -u "$MY_UID" "$@" 2>/dev/null) || true
+    pids=$(pgrep -u "$MY_UID" "$@" 2>/dev/null | grep -v "^$$\$") || true
     if [ -n "$pids" ]; then
         local count
         count=$(echo "$pids" | wc -l)
@@ -109,7 +109,7 @@ echo ""
 echo "--- Verification ---"
 STALE=0
 for name in mariadbd phoronix php sysbench mariadb-blob sar sadc; do
-    n=$(pgrep -c -u "$MY_UID" "$name" 2>/dev/null) || n=0
+    n=$(pgrep -u "$MY_UID" "$name" 2>/dev/null | grep -vc "^$$\$") || n=0
     if [ "$n" -gt 0 ]; then
         echo "  WARNING: $n $name process(es) still running!"
         STALE=1
