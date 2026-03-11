@@ -4,18 +4,24 @@ set -u
 
 MY_UID=$(id -u)
 
+count_procs() {
+    local n
+    n=$(pgrep -c -u "$MY_UID" "$@" 2>/dev/null) || n=0
+    echo "$n"
+}
+
 echo "=== Processes ==="
-printf "  mariadbd:  %s\n" "$(pgrep -c -u "$MY_UID" mariadbd 2>/dev/null || echo 0)"
-printf "  PTS:       %s\n" "$(pgrep -c -u "$MY_UID" -f phoronix 2>/dev/null || echo 0)"
-printf "  SAR:       %s\n" "$(pgrep -c -u "$MY_UID" sar 2>/dev/null || echo 0)"
-printf "  clients:   %s\n" "$(pgrep -c -u "$MY_UID" -f 'mariadb.*sbtest' 2>/dev/null || echo 0)"
+printf "  mariadbd:  %s\n" "$(count_procs mariadbd)"
+printf "  PTS:       %s\n" "$(count_procs -f phoronix)"
+printf "  SAR:       %s\n" "$(count_procs sar)"
+printf "  clients:   %s\n" "$(count_procs -f 'mariadb.*sbtest')"
 
 echo ""
 echo "=== Process Details ==="
 # Show unique processes, collapsing repeated mariadb clients into a count
 ps -u "$MY_UID" --no-headers -o pid,stat,etime,comm,args | grep -vE 'sshd|bash|systemd|sd-pam|ps |grep|bench-status' | \
     grep -v 'mariadb.*sbtest' || true
-CLIENT_COUNT=$(pgrep -c -u "$MY_UID" -f 'mariadb.*sbtest' 2>/dev/null || echo 0)
+CLIENT_COUNT=$(count_procs -f 'mariadb.*sbtest')
 if [ "$CLIENT_COUNT" -gt 0 ]; then
     echo "  ($CLIENT_COUNT mariadb client processes)"
 fi
@@ -35,7 +41,7 @@ for d in ~/.phoronix-test-suite/test-results/*/; do
     name=$(basename "$d")
     composite="$d/composite.xml"
     if [ -f "$composite" ]; then
-        completed=$(grep -c '<Result>' "$composite" 2>/dev/null || echo 0)
+        completed=$(grep -c '<Result>' "$composite" 2>/dev/null) || completed=0
         echo "  $name: $completed test results recorded"
     fi
 done
